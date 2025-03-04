@@ -122,7 +122,6 @@ namespace FoliosApp
         {
             Rutinas.FormatoGrilla(dgvBautismos);
             //-
-            //kaskajskajs
         }
         #endregion
     }
