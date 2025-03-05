@@ -18,5 +18,20 @@ namespace FoliosApp.Servicios
         {
             return repositorioBautismos.GetBautismosCriterio(criterio, busqueda, error);
         }
+
+        public void AgregarBautismo(Bautismo bautismo, Error error)
+        {
+            repositorioBautismos.AgregarBautismo(bautismo, error);
+        }
+
+        public void EditarBautismo(Bautismo bautismo, Error error)
+        {
+            repositorioBautismos.EditarBautismo(bautismo, error);
+        }
+
+        public void BorrarBautismo(Bautismo bautismo, Error error)
+        {
+            repositorioBautismos.BorrarBautismo(bautismo, error);
+        }
     }
 }

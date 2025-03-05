@@ -93,6 +93,12 @@
     <Compile Include="Repositorios\ConectorMySql.cs" />
     <Compile Include="Repositorios\RepositorioBautismos.cs" />
     <Compile Include="Servicios\ServiciosBautismos.cs" />
+    <Compile Include="Ventanas\vBautismos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventanas\vBautismos.Designer.cs">
+      <DependentUpon>vBautismos.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Comun\MessageBox2.resx">
       <DependentUpon>MessageBox2.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +115,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Ventanas\vBautismos.resx">
+      <DependentUpon>vBautismos.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FoliosApp.Modelos.Bautismo.datasource" />
     <None Include="Properties\Settings.settings">
@@ -124,9 +133,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Vistas\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\icono ventana cerrar.png" />
   </ItemGroup>
