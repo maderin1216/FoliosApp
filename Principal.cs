@@ -95,10 +95,7 @@ namespace FoliosApp
                     MessageBox2.Show(IconosVarios.Tilde, "", "El registro se eliminó correctamente.", true);
 
                     RecargarGrilla();
-                    dgvBautismos.ClearSelection();
-                    bsBautismos.Position = -1;
-                    dgvBautismos.CurrentCell = null;
-                    ModoBotonesInferiores(ModoBotones.Inicial);
+                    bsBautismos.Position = 0;
                 }
                 else
                 {
