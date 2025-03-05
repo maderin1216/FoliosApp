@@ -111,5 +111,46 @@ namespace FoliosApp.Repositorios
 
             return retorno;
         }
+
+        public void AgregarBautismo(Bautismo bautismo, Error error)
+        {
+            string sSql;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+
+            sSql = @"   INSERT INTO bautismos
+                            (
+                                documento,
+                                apellido,
+                                nombre,
+                                numero_libro,
+                                numero_folio
+                            )
+                        VALUES
+                            (
+                                @Documento,
+                                @Apellido,
+                                @Nombre,
+                                @Libro,
+                                @Folio
+                            );";
+
+            parametrosLocal.Add("@Documento", bautismo.Documento);
+            parametrosLocal.Add("@Apellido", bautismo.Apellido);
+            parametrosLocal.Add("@Nombre", bautismo.Nombre);
+            parametrosLocal.Add("@Libro", bautismo.Libro);
+            parametrosLocal.Add("@Folio", bautismo.Folio);
+
+            try
+            {
+                dbConnection = conectorBD.GetConexion(error);
+                dbConnection.Execute(sSql, parametrosLocal, commandType: CommandType.Text);
+                error.CodError = 1;
+            }
+            catch(Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+        }
     }
 }
