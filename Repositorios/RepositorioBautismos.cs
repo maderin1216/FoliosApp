@@ -114,10 +114,12 @@ namespace FoliosApp.Repositorios
 
         public void AgregarBautismo(Bautismo bautismo, Error error)
         {
-            string sSql;
+            string sSql1;
+            string sSql2;
             DynamicParameters parametrosLocal = new DynamicParameters();
+            int iIdInsertado;
 
-            sSql = @"   INSERT INTO bautismos
+            sSql1 = @"   INSERT INTO certificados_bautismo
                             (
                                 documento,
                                 apellido,
@@ -134,6 +136,48 @@ namespace FoliosApp.Repositorios
                                 @Folio
                             );";
 
+            sSql2 = @"   SELECT LAST_INSERT_ID();";
+
+            parametrosLocal.Add("@Documento", bautismo.Documento);
+            parametrosLocal.Add("@Apellido", bautismo.Apellido);
+            parametrosLocal.Add("@Nombre", bautismo.Nombre);
+            parametrosLocal.Add("@Libro", bautismo.Libro);
+            parametrosLocal.Add("@Folio", bautismo.Folio);
+
+            try
+            {
+                dbConnection = conectorBD.GetConexion(error);
+                dbConnection.Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
+
+                iIdInsertado = dbConnection.Query<int>(sSql2, parametrosLocal, commandType: CommandType.Text).FirstOrDefault();
+                bautismo.Id = iIdInsertado;
+
+                error.CodError = 1;
+            }
+            catch(Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+        }
+
+        public void EditarBautismo(Bautismo bautismo, Error error)
+        {
+            string sSql;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+
+            sSql = @"   UPDATE 
+                            certificados_bautismo 
+                        SET
+                            documento = @Documento,
+                            apellido = @Apellido,
+                            nombre = @Nombre,
+                            numero_libro = @Libro,
+                            numero_folio = @Folio
+                        WHERE
+                            id = @Id;";
+
+            parametrosLocal.Add("@Id", bautismo.Id);
             parametrosLocal.Add("@Documento", bautismo.Documento);
             parametrosLocal.Add("@Apellido", bautismo.Apellido);
             parametrosLocal.Add("@Nombre", bautismo.Nombre);
@@ -146,7 +190,32 @@ namespace FoliosApp.Repositorios
                 dbConnection.Execute(sSql, parametrosLocal, commandType: CommandType.Text);
                 error.CodError = 1;
             }
-            catch(Exception ex)
+            catch (Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+        }
+
+        public void BorrarBautismo(Bautismo bautismo, Error error)
+        {
+            string sSql;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+
+            sSql = @"   DELETE FROM
+                            certificados_bautismo
+                        WHERE
+                            id = @Id;";
+
+            parametrosLocal.Add("@Id", bautismo.Id);
+
+            try
+            {
+                dbConnection = conectorBD.GetConexion(error);
+                dbConnection.Execute(sSql, parametrosLocal, commandType: CommandType.Text);
+                error.CodError = 1;
+            }
+            catch (Exception ex)
             {
                 error.Mensaje = Rutinas.GetMensajeError(ex.Message);
                 error.CodError = -1;

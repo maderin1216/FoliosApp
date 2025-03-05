@@ -27,7 +27,14 @@ namespace FoliosApp
         #region Eventos
         private void bsBautismos_CurrentChanged(object sender, EventArgs e)
         {
-            ModoBotonesInferiores(ModoBotones.FilaSeleccionada);
+            if (bsBautismos.Current != null)
+            {
+                ModoBotonesInferiores(ModoBotones.FilaSeleccionada);
+            }
+            else
+            {
+                ModoBotonesInferiores(ModoBotones.Inicial);
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -36,7 +43,10 @@ namespace FoliosApp
             DialogResult drAgregar;
             Error error = new Error();
             Bautismo bautismo = new Bautismo();
+            int iIndiceGrilla;
 
+            vBautismos.modoVentana = ModoVentana.Agregar;
+            vBautismos.lblTitulo.Text = "Agregar certificado bautismo";
             drAgregar = vBautismos.ShowDialog();
 
             if(drAgregar == DialogResult.OK)
@@ -51,9 +61,14 @@ namespace FoliosApp
 
                 if(error.CodError > 0)
                 {
-                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se agregó correctamente.");
+                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se agregó correctamente.", true);
 
-
+                    RecargarGrilla();
+                    iIndiceGrilla = ((List<Bautismo>)bsBautismos.List).FindIndex(b => b.Id == bautismo.Id);
+                    if (iIndiceGrilla > 0)
+                    {
+                        bsBautismos.Position = iIndiceGrilla;
+                    }
                 }
                 else
                 {
@@ -62,9 +77,87 @@ namespace FoliosApp
             }
         }
 
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            Error error = new Error();
+            DialogResult drBorrar;
+            Bautismo bautismo = new Bautismo();
+
+            drBorrar = MessageBox2.Show(IconosVarios.Advertencia, "Confirmar borrado", "¿Está seguro que desea eliminar el registro seleccionado?");
+
+            if(drBorrar == DialogResult.Yes)
+            {
+                bautismo = (Bautismo)bsBautismos.Current;
+                serviciosBautismos.BorrarBautismo(bautismo, error);
+
+                if (error.CodError > 0)
+                {
+                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se eliminó correctamente.", true);
+
+                    RecargarGrilla();
+                    dgvBautismos.ClearSelection();
+                    bsBautismos.Position = -1;
+                    dgvBautismos.CurrentCell = null;
+                    ModoBotonesInferiores(ModoBotones.Inicial);
+                }
+                else
+                {
+                    MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al eliminar el registro.", error.Mensaje, true);
+                }
+            }
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             Busqueda();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            vBautismos vBautismos = new vBautismos();
+            DialogResult drAgregar;
+            Error error = new Error();
+            Bautismo bautismo = new Bautismo();
+            int iIndiceGrilla;
+
+            vBautismos.modoVentana = ModoVentana.Modificar;
+            vBautismos.lblTitulo.Text = "Editar certificado bautismo";
+            bautismo = (Bautismo)bsBautismos.Current;
+            vBautismos.Documento = bautismo.Documento;
+            vBautismos.Apellido = bautismo.Apellido;
+            vBautismos.Nombre = bautismo.Nombre;
+            vBautismos.Libro = bautismo.Libro;
+            vBautismos.Folio = bautismo.Folio;
+
+            drAgregar = vBautismos.ShowDialog();
+
+            if (drAgregar == DialogResult.OK)
+            {
+                bautismo.Documento = vBautismos.Documento;
+                bautismo.Apellido = vBautismos.Apellido;
+                bautismo.Nombre = vBautismos.Nombre;
+                bautismo.Libro = vBautismos.Libro;
+                bautismo.Folio = vBautismos.Folio;
+
+                serviciosBautismos.EditarBautismo(bautismo, error);
+
+                if (error.CodError > 0)
+                {
+                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se modificó correctamente.", true);
+
+                    RecargarGrilla();
+
+                    iIndiceGrilla = ((List<Bautismo>)bsBautismos.List).FindIndex(b => b.Id == bautismo.Id);                    
+                    if (iIndiceGrilla > 0)
+                    {
+                        bsBautismos.Position = iIndiceGrilla;
+                    }
+                }
+                else
+                {
+                    MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al modificar el registro.", error.Mensaje, true);
+                }
+            }
         }
 
         private void Principal_Load(object sender, EventArgs e)
@@ -184,6 +277,11 @@ namespace FoliosApp
                     btnBorrar.Enabled = true;
                     break;
             }
+        }
+
+        private void RecargarGrilla()
+        {
+            Busqueda();
         }
         #endregion
     }
