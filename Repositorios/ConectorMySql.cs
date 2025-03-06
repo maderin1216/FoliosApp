@@ -7,7 +7,7 @@ namespace FoliosApp.Repositorios
 {
     public class ConectorMySql
     {
-        string stringConexion = $"Server=localhost; Port=3306; Database=folios_parroquia_app; Uid=dba; Pwd=gestion525; default command timeout=3600;";
+        string stringConexion = $"Server=sql10.freesqldatabase.com; Port=3306; Database=sql10766266; Uid=sql10766266; Pwd=1y4NGdm57Z; default command timeout=3600;";
 
         public IDbConnection GetConexion(Error error)
         {

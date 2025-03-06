@@ -52,38 +52,41 @@ namespace FoliosApp.Repositorios
             string sSql = "";
             DynamicParameters parametrosDapperLocal = new DynamicParameters();
             string criterioString = "";
+            string[] busquedaSplitted = busqueda.Split(' ');
 
-            switch (criterio)
+            try
             {
-                case CriteriosBusqueda.TodasLasColumnas:
-                    criterioString = $@"    documento LIKE '%{busqueda}%'
-                                            OR apellido LIKE '%{busqueda}%'
-                                            OR nombre LIKE '%{busqueda}%'
-                                            OR numero_libro = '{busqueda}'
-                                            OR numero_folio = '{busqueda}'";
-                    break;
-                case CriteriosBusqueda.Documento:
-                    criterioString = $"documento LIKE '%{busqueda}%'";
-                    break;
-                case CriteriosBusqueda.Apellido:
-                    criterioString = $"apellido LIKE '%{busqueda}%'";
-                    break;
-                case CriteriosBusqueda.Nombre:
-                    criterioString = $"nombre LIKE '%{busqueda}%'";
-                    break;
-                case CriteriosBusqueda.Libro:
-                    criterioString = $"numero_libro = '{busqueda}'";
-                    break;
-                case CriteriosBusqueda.Folio:
-                    criterioString = $"numero_folio = '{busqueda}'";
-                    break;
-                case CriteriosBusqueda.ApellidoNombre:
-                    criterioString = $@"    apellido LIKE '%{busqueda.Split(' ')[0]}%'
-                                            AND nombre LIKE '%{busqueda.Split(' ')[1]}%'";
-                    break;
-            }
+                switch (criterio)
+                {
+                    case CriteriosBusqueda.TodasLasColumnas:
+                        criterioString = $@"    documento LIKE '%{busqueda}%'
+                                                OR apellido LIKE '%{busqueda}%'
+                                                OR nombre LIKE '%{busqueda}%'
+                                                OR numero_libro = '{busqueda}'
+                                                OR numero_folio = '{busqueda}'";
+                        break;
+                    case CriteriosBusqueda.Documento:
+                        criterioString = $"documento LIKE '%{busqueda}%'";
+                        break;
+                    case CriteriosBusqueda.Apellido:
+                        criterioString = $"apellido LIKE '%{busqueda}%'";
+                        break;
+                    case CriteriosBusqueda.Nombre:
+                        criterioString = $"nombre LIKE '%{busqueda}%'";
+                        break;
+                    case CriteriosBusqueda.Libro:
+                        criterioString = $"numero_libro = '{busqueda}'";
+                        break;
+                    case CriteriosBusqueda.Folio:
+                        criterioString = $"numero_folio = '{busqueda}'";
+                        break;
+                    case CriteriosBusqueda.ApellidoNombre:                        
+                        criterioString = $@"    CONCAT(apellido, ' ', nombre) LIKE '%{busqueda}%'
+                                                OR CONCAT(nombre, ' ', apellido) LIKE '%{busqueda}'";
+                        break;
+                }
 
-            sSql = $@"  SELECT
+                sSql = $@"  SELECT
                             COALESCE(id, 0) AS Id,
                             COALESCE(documento, '') AS Documento,
                             COALESCE(TRIM(apellido), '') AS Apellido,
@@ -97,8 +100,7 @@ namespace FoliosApp.Repositorios
                         ORDER BY
                             libro ASC, apellido ASC;";
 
-            try
-            {
+
                 dbConnection = conectorBD.GetConexion(error);
                 retorno = dbConnection.Query<Bautismo>(sSql, parametrosDapperLocal, commandType: CommandType.Text).ToList();
                 error.CodError = 1;

@@ -37,6 +37,8 @@ namespace FoliosApp.Ventanas
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtFolio = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,6 +49,8 @@ namespace FoliosApp.Ventanas
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDocumento = new System.Windows.Forms.TextBox();
+            this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaBautismo = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -144,6 +148,10 @@ namespace FoliosApp.Ventanas
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dtpFechaBautismo);
+            this.panel1.Controls.Add(this.dtpFechaNacimiento);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtFolio);
             this.panel1.Controls.Add(this.label4);
@@ -159,6 +167,26 @@ namespace FoliosApp.Ventanas
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(321, 285);
             this.panel1.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(9, 211);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(102, 19);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Fec. bautismo";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(9, 178);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(116, 19);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Fec. nacimiento";
             // 
             // label5
             // 
@@ -250,6 +278,24 @@ namespace FoliosApp.Ventanas
             this.txtDocumento.Size = new System.Drawing.Size(208, 27);
             this.txtDocumento.TabIndex = 2;
             // 
+            // dtpFechaNacimiento
+            // 
+            this.dtpFechaNacimiento.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(133, 175);
+            this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(98, 27);
+            this.dtpFechaNacimiento.TabIndex = 16;
+            // 
+            // dtpFechaBautismo
+            // 
+            this.dtpFechaBautismo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaBautismo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaBautismo.Location = new System.Drawing.Point(133, 205);
+            this.dtpFechaBautismo.Name = "dtpFechaBautismo";
+            this.dtpFechaBautismo.Size = new System.Drawing.Size(98, 27);
+            this.dtpFechaBautismo.TabIndex = 17;
+            // 
             // vBautismos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,5 +340,9 @@ namespace FoliosApp.Ventanas
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDocumento;
         public System.Windows.Forms.Label lblTitulo;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dtpFechaBautismo;
+        private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
     }
 }
