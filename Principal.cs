@@ -56,6 +56,8 @@ namespace FoliosApp
                 bautismo.Nombre = vBautismos.Nombre;
                 bautismo.Libro = vBautismos.Libro;
                 bautismo.Folio = vBautismos.Folio;
+                bautismo.FechaNacimiento = vBautismos.FechaNacimiento;
+                bautismo.FechaBautismo = vBautismos.FechaBautismo;
 
                 serviciosBautismos.AgregarBautismo(bautismo, error);
 
@@ -125,6 +127,8 @@ namespace FoliosApp
             vBautismos.Nombre = bautismo.Nombre;
             vBautismos.Libro = bautismo.Libro;
             vBautismos.Folio = bautismo.Folio;
+            vBautismos.FechaBautismo = bautismo.FechaBautismo;
+            vBautismos.FechaNacimiento = bautismo.FechaNacimiento;
 
             drAgregar = vBautismos.ShowDialog();
 
@@ -135,6 +139,8 @@ namespace FoliosApp
                 bautismo.Nombre = vBautismos.Nombre;
                 bautismo.Libro = vBautismos.Libro;
                 bautismo.Folio = vBautismos.Folio;
+                bautismo.FechaNacimiento = vBautismos.FechaNacimiento;
+                bautismo.FechaBautismo = vBautismos.FechaBautismo;
 
                 serviciosBautismos.EditarBautismo(bautismo, error);
 
@@ -157,6 +163,11 @@ namespace FoliosApp
             }
         }
 
+        private void Principal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void Principal_Load(object sender, EventArgs e)
         {
             Error error = new Error();
@@ -168,7 +179,7 @@ namespace FoliosApp
             if(error.CodError > 0)
             {
                 bsBautismos.DataSource = lBautismos;
-                lblCantidadResultados.Text = lBautismos.Count.ToString();
+                lblCantidadResultados.Text = lBautismos.Count.ToString();                
             }
             else
             {

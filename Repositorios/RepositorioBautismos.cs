@@ -25,7 +25,9 @@ namespace FoliosApp.Repositorios
                             COALESCE(TRIM(apellido), '') AS Apellido,
                             COALESCE(TRIM(nombre), '') AS Nombre,
                             COALESCE(numero_libro, 0) AS Libro,
-                            COALESCE(numero_folio, 0) AS Folio
+                            COALESCE(numero_folio, 0) AS Folio,
+                            COALESCE(fecha_nacimiento, '2000-01-01') AS FechaNacimiento,
+                            COALESCE(fecha_bautismo, '2000-01-01') AS FechaBautismo
                         FROM
                             certificados_bautismo
                         ORDER BY
@@ -92,7 +94,9 @@ namespace FoliosApp.Repositorios
                             COALESCE(TRIM(apellido), '') AS Apellido,
                             COALESCE(TRIM(nombre), '') AS Nombre,
                             COALESCE(numero_libro, 0) AS Libro,
-                            COALESCE(numero_folio, 0) AS Folio
+                            COALESCE(numero_folio, 0) AS Folio,
+                            COALESCE(fecha_nacimiento, '2000-01-01') AS FechaNacimiento,
+                            COALESCE(fecha_bautismo, '2000-01-01') AS FechaBautismo
                         FROM
                             certificados_bautismo
                         WHERE
@@ -127,7 +131,11 @@ namespace FoliosApp.Repositorios
                                 apellido,
                                 nombre,
                                 numero_libro,
-                                numero_folio
+                                numero_folio,
+                                fecha_nacimiento,
+                                fecha_bautismo,
+                                fecha_carga,
+                                fecha_edicion
                             )
                         VALUES
                             (
@@ -135,7 +143,11 @@ namespace FoliosApp.Repositorios
                                 @Apellido,
                                 @Nombre,
                                 @Libro,
-                                @Folio
+                                @Folio,
+                                @FechaNacimiento,
+                                @FechaBautismo,
+                                NOW(),
+                                NOW()
                             );";
 
             sSql2 = @"   SELECT LAST_INSERT_ID();";
@@ -145,6 +157,8 @@ namespace FoliosApp.Repositorios
             parametrosLocal.Add("@Nombre", bautismo.Nombre);
             parametrosLocal.Add("@Libro", bautismo.Libro);
             parametrosLocal.Add("@Folio", bautismo.Folio);
+            parametrosLocal.Add("@FechaNacimiento", bautismo.FechaNacimiento);
+            parametrosLocal.Add("@FechaBautismo", bautismo.FechaBautismo);
 
             try
             {
@@ -175,7 +189,10 @@ namespace FoliosApp.Repositorios
                             apellido = @Apellido,
                             nombre = @Nombre,
                             numero_libro = @Libro,
-                            numero_folio = @Folio
+                            numero_folio = @Folio,
+                            fecha_nacimiento = @FechaNacimiento,
+                            fecha_bautismo = @FechaBautismo,
+                            fecha_edicion = NOW()
                         WHERE
                             id = @Id;";
 
@@ -185,6 +202,8 @@ namespace FoliosApp.Repositorios
             parametrosLocal.Add("@Nombre", bautismo.Nombre);
             parametrosLocal.Add("@Libro", bautismo.Libro);
             parametrosLocal.Add("@Folio", bautismo.Folio);
+            parametrosLocal.Add("@FechaNacimiento", bautismo.FechaNacimiento);
+            parametrosLocal.Add("@FechaBautismo", bautismo.FechaBautismo);
 
             try
             {

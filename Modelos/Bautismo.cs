@@ -1,4 +1,6 @@
-﻿namespace FoliosApp.Modelos
+﻿using System;
+
+namespace FoliosApp.Modelos
 {
     public class Bautismo
     {
@@ -8,5 +10,9 @@
         public string Nombre { get; set; }
         public int Libro { get; set; }
         public int Folio { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public DateTime FechaBautismo { get; set; }
+        public DateTime FechaCarga { get; set; }
+        public DateTime FechaEdicion { get; set; }
     }
 }

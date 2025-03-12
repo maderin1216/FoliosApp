@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows.Forms;
 
 namespace FoliosApp.Comun
@@ -51,6 +52,24 @@ namespace FoliosApp.Comun
                     c.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
+        }
+
+        public static string GenerarMD5(string usuario, string pass, Error error)
+        {
+            StringBuilder sb = new StringBuilder();
+            string sSemilla = "AvAvellaneda498";
+
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                byte[] inputBytes = Encoding.ASCII.GetBytes($"{usuario}{pass}{sSemilla}");
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+            }
+            return sb.ToString();
         }
     }
 }

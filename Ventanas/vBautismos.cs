@@ -1,4 +1,5 @@
 ﻿using FoliosApp.Comun;
+using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -13,6 +14,8 @@ namespace FoliosApp.Ventanas
         public string Nombre { get; set; }
         public int Libro { get; set; }
         public int Folio { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public DateTime FechaBautismo { get; set; }
 
         public vBautismos()
         {
@@ -38,7 +41,9 @@ namespace FoliosApp.Ventanas
                 Nombre = txtNombre.Text.ToUpper();
                 Libro = int.TryParse(txtLibro.Text, out int iLibro) ? iLibro : 0;
                 Folio = int.TryParse(txtFolio.Text, out int iFolio) ? iFolio : 0;
-                
+                FechaNacimiento = dtpFechaNacimiento.Value;
+                FechaBautismo = dtpFechaBautismo.Value;
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
@@ -67,6 +72,8 @@ namespace FoliosApp.Ventanas
                     txtNombre.Text = Nombre;
                     txtLibro.Text = Libro.ToString();
                     txtFolio.Text = Folio.ToString();
+                    dtpFechaBautismo.Value = FechaBautismo;
+                    dtpFechaNacimiento.Value = FechaNacimiento;
                     break;
             }
         }
