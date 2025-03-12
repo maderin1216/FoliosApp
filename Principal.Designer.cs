@@ -44,13 +44,6 @@ namespace FoliosApp
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgvBautismos = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.libroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.folioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsBautismos = new System.Windows.Forms.BindingSource(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnBorrar = new System.Windows.Forms.Button();
@@ -61,6 +54,46 @@ namespace FoliosApp
             this.label4 = new System.Windows.Forms.Label();
             this.tpConfirmaciones = new System.Windows.Forms.TabPage();
             this.tpCenizas = new System.Windows.Forms.TabPage();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.librosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administraciónDeLibrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.dgvConfirmaciones = new System.Windows.Forms.DataGridView();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.lblResultadosConfirmaciones = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.bsConfirmaciones = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.libroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsBautismos = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.libroDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folioDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpBautismos.SuspendLayout();
@@ -69,20 +102,31 @@ namespace FoliosApp
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBautismos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBautismos)).BeginInit();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.tpConfirmaciones.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConfirmaciones)).BeginInit();
+            this.panel11.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConfirmaciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBautismos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1225, 600);
+            this.panel1.Size = new System.Drawing.Size(1225, 576);
             this.panel1.TabIndex = 0;
             // 
             // tabControl1
@@ -96,7 +140,7 @@ namespace FoliosApp
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1225, 600);
+            this.tabControl1.Size = new System.Drawing.Size(1225, 576);
             this.tabControl1.TabIndex = 0;
             // 
             // tpBautismos
@@ -106,7 +150,7 @@ namespace FoliosApp
             this.tpBautismos.Margin = new System.Windows.Forms.Padding(4);
             this.tpBautismos.Name = "tpBautismos";
             this.tpBautismos.Padding = new System.Windows.Forms.Padding(4);
-            this.tpBautismos.Size = new System.Drawing.Size(1217, 569);
+            this.tpBautismos.Size = new System.Drawing.Size(1217, 545);
             this.tpBautismos.TabIndex = 0;
             this.tpBautismos.Text = "Bautismos";
             this.tpBautismos.UseVisualStyleBackColor = true;
@@ -127,7 +171,7 @@ namespace FoliosApp
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1209, 561);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1209, 537);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // panel2
@@ -222,7 +266,7 @@ namespace FoliosApp
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 103);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1203, 405);
+            this.panel4.Size = new System.Drawing.Size(1203, 381);
             this.panel4.TabIndex = 2;
             // 
             // dgvBautismos
@@ -240,57 +284,15 @@ namespace FoliosApp
             this.dgvBautismos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBautismos.Location = new System.Drawing.Point(0, 0);
             this.dgvBautismos.Name = "dgvBautismos";
-            this.dgvBautismos.Size = new System.Drawing.Size(1203, 405);
+            this.dgvBautismos.Size = new System.Drawing.Size(1203, 381);
             this.dgvBautismos.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // documentoDataGridViewTextBoxColumn
-            // 
-            this.documentoDataGridViewTextBoxColumn.DataPropertyName = "Documento";
-            this.documentoDataGridViewTextBoxColumn.HeaderText = "Documento";
-            this.documentoDataGridViewTextBoxColumn.Name = "documentoDataGridViewTextBoxColumn";
-            // 
-            // apellidoDataGridViewTextBoxColumn
-            // 
-            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            // 
-            // libroDataGridViewTextBoxColumn
-            // 
-            this.libroDataGridViewTextBoxColumn.DataPropertyName = "Libro";
-            this.libroDataGridViewTextBoxColumn.HeaderText = "Libro";
-            this.libroDataGridViewTextBoxColumn.Name = "libroDataGridViewTextBoxColumn";
-            // 
-            // folioDataGridViewTextBoxColumn
-            // 
-            this.folioDataGridViewTextBoxColumn.DataPropertyName = "Folio";
-            this.folioDataGridViewTextBoxColumn.HeaderText = "Folio";
-            this.folioDataGridViewTextBoxColumn.Name = "folioDataGridViewTextBoxColumn";
-            // 
-            // bsBautismos
-            // 
-            this.bsBautismos.DataSource = typeof(FoliosApp.Modelos.Bautismo);
-            this.bsBautismos.CurrentChanged += new System.EventHandler(this.bsBautismos_CurrentChanged);
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.panel7);
             this.panel5.Controls.Add(this.panel6);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(3, 514);
+            this.panel5.Location = new System.Drawing.Point(3, 490);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1203, 44);
             this.panel5.TabIndex = 3;
@@ -388,11 +390,12 @@ namespace FoliosApp
             // 
             // tpConfirmaciones
             // 
+            this.tpConfirmaciones.Controls.Add(this.tableLayoutPanel2);
             this.tpConfirmaciones.Location = new System.Drawing.Point(4, 27);
             this.tpConfirmaciones.Margin = new System.Windows.Forms.Padding(4);
             this.tpConfirmaciones.Name = "tpConfirmaciones";
             this.tpConfirmaciones.Padding = new System.Windows.Forms.Padding(4);
-            this.tpConfirmaciones.Size = new System.Drawing.Size(1217, 569);
+            this.tpConfirmaciones.Size = new System.Drawing.Size(1217, 545);
             this.tpConfirmaciones.TabIndex = 1;
             this.tpConfirmaciones.Text = "Confirmaciones";
             this.tpConfirmaciones.UseVisualStyleBackColor = true;
@@ -402,10 +405,377 @@ namespace FoliosApp
             this.tpCenizas.Location = new System.Drawing.Point(4, 27);
             this.tpCenizas.Margin = new System.Windows.Forms.Padding(4);
             this.tpCenizas.Name = "tpCenizas";
-            this.tpCenizas.Size = new System.Drawing.Size(1217, 569);
+            this.tpCenizas.Size = new System.Drawing.Size(1217, 545);
             this.tpCenizas.TabIndex = 2;
             this.tpCenizas.Text = "Cenizas";
             this.tpCenizas.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuariosToolStripMenuItem,
+            this.librosToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1225, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoUsuarioToolStripMenuItem});
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.usuariosToolStripMenuItem.Text = "&Usuarios";
+            // 
+            // nuevoUsuarioToolStripMenuItem
+            // 
+            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.nuevoUsuarioToolStripMenuItem.Text = "&Administrar usuarios";
+            this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.administrarUsuariosToolStripMenuItem_Click);
+            // 
+            // librosToolStripMenuItem
+            // 
+            this.librosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.administraciónDeLibrosToolStripMenuItem});
+            this.librosToolStripMenuItem.Name = "librosToolStripMenuItem";
+            this.librosToolStripMenuItem.ShowShortcutKeys = false;
+            this.librosToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.librosToolStripMenuItem.Text = "&Libros";
+            // 
+            // administraciónDeLibrosToolStripMenuItem
+            // 
+            this.administraciónDeLibrosToolStripMenuItem.Name = "administraciónDeLibrosToolStripMenuItem";
+            this.administraciónDeLibrosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.administraciónDeLibrosToolStripMenuItem.Text = "&Administrar libros";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.salirToolStripMenuItem.Text = "&Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.panel8, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.panel9, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panel10, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.panel11, 0, 3);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1209, 537);
+            this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label5);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(3, 3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1203, 44);
+            this.panel8.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(2, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(276, 29);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Planilla de confirmaciones";
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.button1);
+            this.panel9.Controls.Add(this.label6);
+            this.panel9.Controls.Add(this.comboBox1);
+            this.panel9.Controls.Add(this.label7);
+            this.panel9.Controls.Add(this.textBox1);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(3, 53);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1203, 44);
+            this.panel9.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(662, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 30);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "BUSCAR";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(363, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 19);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Criterio";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(429, 13);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(215, 26);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 15);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 19);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Filtro";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(54, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(290, 26);
+            this.textBox1.TabIndex = 0;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.dgvConfirmaciones);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(3, 103);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1203, 381);
+            this.panel10.TabIndex = 2;
+            // 
+            // dgvConfirmaciones
+            // 
+            this.dgvConfirmaciones.AutoGenerateColumns = false;
+            this.dgvConfirmaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConfirmaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn1,
+            this.documentoDataGridViewTextBoxColumn1,
+            this.apellidoDataGridViewTextBoxColumn1,
+            this.nombreDataGridViewTextBoxColumn1,
+            this.libroDataGridViewTextBoxColumn1,
+            this.folioDataGridViewTextBoxColumn1,
+            this.fechaDataGridViewTextBoxColumn});
+            this.dgvConfirmaciones.DataSource = this.bsConfirmaciones;
+            this.dgvConfirmaciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvConfirmaciones.Location = new System.Drawing.Point(0, 0);
+            this.dgvConfirmaciones.Name = "dgvConfirmaciones";
+            this.dgvConfirmaciones.Size = new System.Drawing.Size(1203, 381);
+            this.dgvConfirmaciones.TabIndex = 0;
+            // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Controls.Add(this.panel13);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(3, 490);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1203, 44);
+            this.panel11.TabIndex = 3;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.button2);
+            this.panel12.Controls.Add(this.button3);
+            this.panel12.Controls.Add(this.button4);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(325, 44);
+            this.panel12.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(217, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(88, 30);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "BORRAR";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Teal;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(112, 7);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(88, 30);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "EDITAR";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(7, 7);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(88, 30);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "AGREGAR";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.lblResultadosConfirmaciones);
+            this.panel13.Controls.Add(this.label9);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel13.Location = new System.Drawing.Point(1005, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(198, 44);
+            this.panel13.TabIndex = 0;
+            // 
+            // lblResultadosConfirmaciones
+            // 
+            this.lblResultadosConfirmaciones.AutoSize = true;
+            this.lblResultadosConfirmaciones.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResultadosConfirmaciones.ForeColor = System.Drawing.Color.Teal;
+            this.lblResultadosConfirmaciones.Location = new System.Drawing.Point(96, 13);
+            this.lblResultadosConfirmaciones.Name = "lblResultadosConfirmaciones";
+            this.lblResultadosConfirmaciones.Size = new System.Drawing.Size(14, 19);
+            this.lblResultadosConfirmaciones.TabIndex = 1;
+            this.lblResultadosConfirmaciones.Text = "-";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Teal;
+            this.label9.Location = new System.Drawing.Point(3, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 19);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Resultados:";
+            // 
+            // bsConfirmaciones
+            // 
+            this.bsConfirmaciones.DataSource = typeof(FoliosApp.Modelos.Confirmacion);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // documentoDataGridViewTextBoxColumn
+            // 
+            this.documentoDataGridViewTextBoxColumn.DataPropertyName = "Documento";
+            this.documentoDataGridViewTextBoxColumn.HeaderText = "Documento";
+            this.documentoDataGridViewTextBoxColumn.Name = "documentoDataGridViewTextBoxColumn";
+            // 
+            // apellidoDataGridViewTextBoxColumn
+            // 
+            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // libroDataGridViewTextBoxColumn
+            // 
+            this.libroDataGridViewTextBoxColumn.DataPropertyName = "Libro";
+            this.libroDataGridViewTextBoxColumn.HeaderText = "Libro";
+            this.libroDataGridViewTextBoxColumn.Name = "libroDataGridViewTextBoxColumn";
+            // 
+            // folioDataGridViewTextBoxColumn
+            // 
+            this.folioDataGridViewTextBoxColumn.DataPropertyName = "Folio";
+            this.folioDataGridViewTextBoxColumn.HeaderText = "Folio";
+            this.folioDataGridViewTextBoxColumn.Name = "folioDataGridViewTextBoxColumn";
+            // 
+            // bsBautismos
+            // 
+            this.bsBautismos.DataSource = typeof(FoliosApp.Modelos.Bautismo);
+            this.bsBautismos.CurrentChanged += new System.EventHandler(this.bsBautismos_CurrentChanged);
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // documentoDataGridViewTextBoxColumn1
+            // 
+            this.documentoDataGridViewTextBoxColumn1.DataPropertyName = "Documento";
+            this.documentoDataGridViewTextBoxColumn1.HeaderText = "Documento";
+            this.documentoDataGridViewTextBoxColumn1.Name = "documentoDataGridViewTextBoxColumn1";
+            // 
+            // apellidoDataGridViewTextBoxColumn1
+            // 
+            this.apellidoDataGridViewTextBoxColumn1.DataPropertyName = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn1.HeaderText = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn1.Name = "apellidoDataGridViewTextBoxColumn1";
+            // 
+            // nombreDataGridViewTextBoxColumn1
+            // 
+            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
+            // 
+            // libroDataGridViewTextBoxColumn1
+            // 
+            this.libroDataGridViewTextBoxColumn1.DataPropertyName = "Libro";
+            this.libroDataGridViewTextBoxColumn1.HeaderText = "Libro";
+            this.libroDataGridViewTextBoxColumn1.Name = "libroDataGridViewTextBoxColumn1";
+            // 
+            // folioDataGridViewTextBoxColumn1
+            // 
+            this.folioDataGridViewTextBoxColumn1.DataPropertyName = "Folio";
+            this.folioDataGridViewTextBoxColumn1.HeaderText = "Folio";
+            this.folioDataGridViewTextBoxColumn1.Name = "folioDataGridViewTextBoxColumn1";
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
             // 
             // Principal
             // 
@@ -413,7 +783,9 @@ namespace FoliosApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1225, 600);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -431,12 +803,28 @@ namespace FoliosApp
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBautismos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBautismos)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.tpConfirmaciones.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvConfirmaciones)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel12.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConfirmaciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsBautismos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -473,6 +861,39 @@ namespace FoliosApp
         private System.Windows.Forms.Button btnBorrar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem librosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem administraciónDeLibrosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.DataGridView dgvConfirmaciones;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Label lblResultadosConfirmaciones;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.BindingSource bsConfirmaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn documentoDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn libroDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
     }
 }
 

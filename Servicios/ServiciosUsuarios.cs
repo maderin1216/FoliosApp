@@ -13,5 +13,15 @@ namespace FoliosApp.Servicios
         {
             return repositorioUsuarios.GetUsuario(nombre, error);
         }
+
+        public List<Usuario> GetAllUsuarios(Error error)
+        {
+            return repositorioUsuarios.GetAllUsuarios(error);
+        }
+
+        public List<UsuarioNivel> GetAllNivelesUsuarios(Error error)
+        {
+            return repositorioUsuarios.GetAllNivelesUsuarios(error);
+        }
     }
 }

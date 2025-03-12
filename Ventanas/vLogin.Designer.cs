@@ -198,7 +198,7 @@ namespace FoliosApp.Ventanas
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(343, 250);
-            this.MinimumSize = new System.Drawing.Size(343, 200);
+            this.MinimumSize = new System.Drawing.Size(343, 250);
             this.Name = "vLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Shown += new System.EventHandler(this.vLogin_Shown);

@@ -17,6 +17,7 @@ namespace FoliosApp
     public partial class Principal : Form
     {
         ServiciosBautismos serviciosBautismos = new ServiciosBautismos();
+        ServiciosConfirmaciones serviciosConfirmaciones = new ServiciosConfirmaciones();
 
         public Principal()
         {
@@ -173,13 +174,26 @@ namespace FoliosApp
             Error error = new Error();
             List<Bautismo> lBautismos = new List<Bautismo>();
             List<dynamic> lCriterios;
+            List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
 
-            //Grilla
+            //Grilla dgvBautismos
             lBautismos = serviciosBautismos.GetAllBautismos(error);
             if(error.CodError > 0)
             {
                 bsBautismos.DataSource = lBautismos;
                 lblCantidadResultados.Text = lBautismos.Count.ToString();                
+            }
+            else
+            {
+                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
+            }
+
+            //Grilla dgvConfirmaciones
+            lConfirmaciones = serviciosConfirmaciones.GetAllConfirmaciones(error);
+            if (error.CodError > 0)
+            {
+                bsConfirmaciones.DataSource = lConfirmaciones;
+                lblResultadosConfirmaciones.Text = lConfirmaciones.Count.ToString();
             }
             else
             {
@@ -235,6 +249,21 @@ namespace FoliosApp
                 dgvBautismos.Focus();
             }
         }
+
+        #endregion
+
+        #region ToolStripMenuItem
+        private void administrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vUsuarios vUsuarios = new vUsuarios();
+
+            vUsuarios.ShowDialog();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         #endregion
 
         #region Métodos
@@ -260,6 +289,7 @@ namespace FoliosApp
         private void Inicio()
         {
             Rutinas.FormatoGrilla(dgvBautismos);
+            Rutinas.FormatoGrilla(dgvConfirmaciones);
             ModoBotonesInferiores(ModoBotones.Inicial);
         }
 
@@ -291,6 +321,7 @@ namespace FoliosApp
         {
             Busqueda();
         }
+
         #endregion
     }
 }
