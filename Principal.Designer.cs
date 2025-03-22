@@ -50,21 +50,14 @@ namespace FoliosApp
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.lblCantidadResultados = new System.Windows.Forms.Label();
+            this.lblCantidadResultadosBautismo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tpConfirmaciones = new System.Windows.Forms.TabPage();
-            this.tpCenizas = new System.Windows.Forms.TabPage();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.librosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.administraciónDeLibrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscarConfirmacion = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -73,13 +66,18 @@ namespace FoliosApp
             this.dgvConfirmaciones = new System.Windows.Forms.DataGridView();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnBorrarConfirmacion = new System.Windows.Forms.Button();
+            this.btnEditarConfirmacion = new System.Windows.Forms.Button();
+            this.btnAgregarConfirmacion = new System.Windows.Forms.Button();
             this.panel13 = new System.Windows.Forms.Panel();
             this.lblResultadosConfirmaciones = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.bsConfirmaciones = new System.Windows.Forms.BindingSource(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.librosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.administraciónDeLibrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,6 +92,7 @@ namespace FoliosApp
             this.libroDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folioDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsConfirmaciones = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpBautismos.SuspendLayout();
@@ -106,7 +105,6 @@ namespace FoliosApp
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.tpConfirmaciones.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -115,8 +113,9 @@ namespace FoliosApp
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsConfirmaciones)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBautismos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConfirmaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -133,7 +132,6 @@ namespace FoliosApp
             // 
             this.tabControl1.Controls.Add(this.tpBautismos);
             this.tabControl1.Controls.Add(this.tpConfirmaciones);
-            this.tabControl1.Controls.Add(this.tpCenizas);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -142,6 +140,7 @@ namespace FoliosApp
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1225, 576);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tpBautismos
             // 
@@ -358,7 +357,7 @@ namespace FoliosApp
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.lblCantidadResultados);
+            this.panel6.Controls.Add(this.lblCantidadResultadosBautismo);
             this.panel6.Controls.Add(this.label4);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(1005, 0);
@@ -366,16 +365,16 @@ namespace FoliosApp
             this.panel6.Size = new System.Drawing.Size(198, 44);
             this.panel6.TabIndex = 0;
             // 
-            // lblCantidadResultados
+            // lblCantidadResultadosBautismo
             // 
-            this.lblCantidadResultados.AutoSize = true;
-            this.lblCantidadResultados.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidadResultados.ForeColor = System.Drawing.Color.Teal;
-            this.lblCantidadResultados.Location = new System.Drawing.Point(96, 13);
-            this.lblCantidadResultados.Name = "lblCantidadResultados";
-            this.lblCantidadResultados.Size = new System.Drawing.Size(14, 19);
-            this.lblCantidadResultados.TabIndex = 1;
-            this.lblCantidadResultados.Text = "-";
+            this.lblCantidadResultadosBautismo.AutoSize = true;
+            this.lblCantidadResultadosBautismo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidadResultadosBautismo.ForeColor = System.Drawing.Color.Teal;
+            this.lblCantidadResultadosBautismo.Location = new System.Drawing.Point(96, 13);
+            this.lblCantidadResultadosBautismo.Name = "lblCantidadResultadosBautismo";
+            this.lblCantidadResultadosBautismo.Size = new System.Drawing.Size(14, 19);
+            this.lblCantidadResultadosBautismo.TabIndex = 1;
+            this.lblCantidadResultadosBautismo.Text = "-";
             // 
             // label4
             // 
@@ -399,65 +398,6 @@ namespace FoliosApp
             this.tpConfirmaciones.TabIndex = 1;
             this.tpConfirmaciones.Text = "Confirmaciones";
             this.tpConfirmaciones.UseVisualStyleBackColor = true;
-            // 
-            // tpCenizas
-            // 
-            this.tpCenizas.Location = new System.Drawing.Point(4, 27);
-            this.tpCenizas.Margin = new System.Windows.Forms.Padding(4);
-            this.tpCenizas.Name = "tpCenizas";
-            this.tpCenizas.Size = new System.Drawing.Size(1217, 545);
-            this.tpCenizas.TabIndex = 2;
-            this.tpCenizas.Text = "Cenizas";
-            this.tpCenizas.UseVisualStyleBackColor = true;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usuariosToolStripMenuItem,
-            this.librosToolStripMenuItem,
-            this.salirToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1225, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // usuariosToolStripMenuItem
-            // 
-            this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevoUsuarioToolStripMenuItem});
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.usuariosToolStripMenuItem.Text = "&Usuarios";
-            // 
-            // nuevoUsuarioToolStripMenuItem
-            // 
-            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.nuevoUsuarioToolStripMenuItem.Text = "&Administrar usuarios";
-            this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.administrarUsuariosToolStripMenuItem_Click);
-            // 
-            // librosToolStripMenuItem
-            // 
-            this.librosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.administraciónDeLibrosToolStripMenuItem});
-            this.librosToolStripMenuItem.Name = "librosToolStripMenuItem";
-            this.librosToolStripMenuItem.ShowShortcutKeys = false;
-            this.librosToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.librosToolStripMenuItem.Text = "&Libros";
-            // 
-            // administraciónDeLibrosToolStripMenuItem
-            // 
-            this.administraciónDeLibrosToolStripMenuItem.Name = "administraciónDeLibrosToolStripMenuItem";
-            this.administraciónDeLibrosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.administraciónDeLibrosToolStripMenuItem.Text = "&Administrar libros";
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.salirToolStripMenuItem.Text = "&Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -500,7 +440,7 @@ namespace FoliosApp
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.button1);
+            this.panel9.Controls.Add(this.btnBuscarConfirmacion);
             this.panel9.Controls.Add(this.label6);
             this.panel9.Controls.Add(this.comboBox1);
             this.panel9.Controls.Add(this.label7);
@@ -511,20 +451,20 @@ namespace FoliosApp
             this.panel9.Size = new System.Drawing.Size(1203, 44);
             this.panel9.TabIndex = 1;
             // 
-            // button1
+            // btnBuscarConfirmacion
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(662, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 30);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "BUSCAR";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnBuscarConfirmacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnBuscarConfirmacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscarConfirmacion.FlatAppearance.BorderSize = 0;
+            this.btnBuscarConfirmacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarConfirmacion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarConfirmacion.ForeColor = System.Drawing.Color.White;
+            this.btnBuscarConfirmacion.Location = new System.Drawing.Point(662, 9);
+            this.btnBuscarConfirmacion.Name = "btnBuscarConfirmacion";
+            this.btnBuscarConfirmacion.Size = new System.Drawing.Size(75, 30);
+            this.btnBuscarConfirmacion.TabIndex = 4;
+            this.btnBuscarConfirmacion.Text = "BUSCAR";
+            this.btnBuscarConfirmacion.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -602,59 +542,60 @@ namespace FoliosApp
             // 
             // panel12
             // 
-            this.panel12.Controls.Add(this.button2);
-            this.panel12.Controls.Add(this.button3);
-            this.panel12.Controls.Add(this.button4);
+            this.panel12.Controls.Add(this.btnBorrarConfirmacion);
+            this.panel12.Controls.Add(this.btnEditarConfirmacion);
+            this.panel12.Controls.Add(this.btnAgregarConfirmacion);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(325, 44);
             this.panel12.TabIndex = 1;
             // 
-            // button2
+            // btnBorrarConfirmacion
             // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(217, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 30);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "BORRAR";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnBorrarConfirmacion.BackColor = System.Drawing.Color.Red;
+            this.btnBorrarConfirmacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrarConfirmacion.FlatAppearance.BorderSize = 0;
+            this.btnBorrarConfirmacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrarConfirmacion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBorrarConfirmacion.ForeColor = System.Drawing.Color.White;
+            this.btnBorrarConfirmacion.Location = new System.Drawing.Point(217, 7);
+            this.btnBorrarConfirmacion.Name = "btnBorrarConfirmacion";
+            this.btnBorrarConfirmacion.Size = new System.Drawing.Size(88, 30);
+            this.btnBorrarConfirmacion.TabIndex = 7;
+            this.btnBorrarConfirmacion.Text = "BORRAR";
+            this.btnBorrarConfirmacion.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnEditarConfirmacion
             // 
-            this.button3.BackColor = System.Drawing.Color.Teal;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(112, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 30);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "EDITAR";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnEditarConfirmacion.BackColor = System.Drawing.Color.Teal;
+            this.btnEditarConfirmacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarConfirmacion.FlatAppearance.BorderSize = 0;
+            this.btnEditarConfirmacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarConfirmacion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarConfirmacion.ForeColor = System.Drawing.Color.White;
+            this.btnEditarConfirmacion.Location = new System.Drawing.Point(112, 7);
+            this.btnEditarConfirmacion.Name = "btnEditarConfirmacion";
+            this.btnEditarConfirmacion.Size = new System.Drawing.Size(88, 30);
+            this.btnEditarConfirmacion.TabIndex = 6;
+            this.btnEditarConfirmacion.Text = "EDITAR";
+            this.btnEditarConfirmacion.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnAgregarConfirmacion
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(7, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 30);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "AGREGAR";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnAgregarConfirmacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAgregarConfirmacion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregarConfirmacion.FlatAppearance.BorderSize = 0;
+            this.btnAgregarConfirmacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarConfirmacion.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarConfirmacion.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarConfirmacion.Location = new System.Drawing.Point(7, 7);
+            this.btnAgregarConfirmacion.Name = "btnAgregarConfirmacion";
+            this.btnAgregarConfirmacion.Size = new System.Drawing.Size(88, 30);
+            this.btnAgregarConfirmacion.TabIndex = 5;
+            this.btnAgregarConfirmacion.Text = "AGREGAR";
+            this.btnAgregarConfirmacion.UseVisualStyleBackColor = false;
+            this.btnAgregarConfirmacion.Click += new System.EventHandler(this.btnAgregarConfirmacion_Click);
             // 
             // panel13
             // 
@@ -688,9 +629,54 @@ namespace FoliosApp
             this.label9.TabIndex = 0;
             this.label9.Text = "Resultados:";
             // 
-            // bsConfirmaciones
+            // menuStrip1
             // 
-            this.bsConfirmaciones.DataSource = typeof(FoliosApp.Modelos.Confirmacion);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usuariosToolStripMenuItem,
+            this.librosToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1225, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // usuariosToolStripMenuItem
+            // 
+            this.usuariosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoUsuarioToolStripMenuItem});
+            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.usuariosToolStripMenuItem.Text = "&Usuarios";
+            // 
+            // nuevoUsuarioToolStripMenuItem
+            // 
+            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.nuevoUsuarioToolStripMenuItem.Text = "&Administrar usuarios";
+            this.nuevoUsuarioToolStripMenuItem.Click += new System.EventHandler(this.administrarUsuariosToolStripMenuItem_Click);
+            // 
+            // librosToolStripMenuItem
+            // 
+            this.librosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.administraciónDeLibrosToolStripMenuItem});
+            this.librosToolStripMenuItem.Name = "librosToolStripMenuItem";
+            this.librosToolStripMenuItem.ShowShortcutKeys = false;
+            this.librosToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.librosToolStripMenuItem.Text = "&Libros";
+            // 
+            // administraciónDeLibrosToolStripMenuItem
+            // 
+            this.administraciónDeLibrosToolStripMenuItem.Name = "administraciónDeLibrosToolStripMenuItem";
+            this.administraciónDeLibrosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.administraciónDeLibrosToolStripMenuItem.Text = "&Administrar libros";
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.salirToolStripMenuItem.Text = "&Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -777,6 +763,10 @@ namespace FoliosApp
             this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
             this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
             // 
+            // bsConfirmaciones
+            // 
+            this.bsConfirmaciones.DataSource = typeof(FoliosApp.Modelos.Confirmacion);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -808,8 +798,6 @@ namespace FoliosApp
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.tpConfirmaciones.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
@@ -821,8 +809,10 @@ namespace FoliosApp
             this.panel12.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
             this.panel13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsConfirmaciones)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsBautismos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConfirmaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -834,7 +824,6 @@ namespace FoliosApp
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tpBautismos;
         private System.Windows.Forms.TabPage tpConfirmaciones;
-        private System.Windows.Forms.TabPage tpCenizas;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
@@ -855,7 +844,7 @@ namespace FoliosApp
         private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label lblCantidadResultados;
+        private System.Windows.Forms.Label lblCantidadResultadosBautismo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button btnBorrar;
@@ -871,7 +860,7 @@ namespace FoliosApp
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBuscarConfirmacion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
@@ -880,9 +869,9 @@ namespace FoliosApp
         private System.Windows.Forms.DataGridView dgvConfirmaciones;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnBorrarConfirmacion;
+        private System.Windows.Forms.Button btnEditarConfirmacion;
+        private System.Windows.Forms.Button btnAgregarConfirmacion;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label lblResultadosConfirmaciones;
         private System.Windows.Forms.Label label9;

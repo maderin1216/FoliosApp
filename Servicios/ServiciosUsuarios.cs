@@ -23,5 +23,10 @@ namespace FoliosApp.Servicios
         {
             return repositorioUsuarios.GetAllNivelesUsuarios(error);
         }
+
+        public void GrabarIngreso(string usuario, int tipo, Error error)
+        {
+            repositorioUsuarios.GrabarIngreso(usuario, tipo, error);
+        }
     }
 }

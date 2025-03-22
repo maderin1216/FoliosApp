@@ -37,6 +37,8 @@ namespace FoliosApp.Repositorios
                 dbConnection = conectorBD.GetConexion(error);
                 retorno = dbConnection.Query<Confirmacion>(sSql, parametrosDapperLocal, commandType: CommandType.Text).ToList();
                 error.CodError = 1;
+
+                dbConnection.Close();
             }
             catch(Exception ex)
             {
@@ -106,6 +108,8 @@ namespace FoliosApp.Repositorios
                 dbConnection = conectorBD.GetConexion(error);
                 retorno = dbConnection.Query<Confirmacion>(sSql, parametrosDapperLocal, commandType: CommandType.Text).ToList();
                 error.CodError = 1;
+
+                dbConnection.Close();
             }
             catch (Exception ex)
             {
@@ -160,6 +164,8 @@ namespace FoliosApp.Repositorios
                 confirmacion.Id = iIdInsertado;
 
                 error.CodError = 1;
+
+                dbConnection.Close();
             }
             catch(Exception ex)
             {
@@ -198,6 +204,8 @@ namespace FoliosApp.Repositorios
                 dbConnection = conectorBD.GetConexion(error);
                 dbConnection.Execute(sSql, parametrosLocal, commandType: CommandType.Text);
                 error.CodError = 1;
+
+                dbConnection.Close();
             }
             catch (Exception ex)
             {
@@ -223,6 +231,8 @@ namespace FoliosApp.Repositorios
                 dbConnection = conectorBD.GetConexion(error);
                 dbConnection.Execute(sSql, parametrosLocal, commandType: CommandType.Text);
                 error.CodError = 1;
+
+                dbConnection.Close();
             }
             catch (Exception ex)
             {

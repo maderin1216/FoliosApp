@@ -40,8 +40,8 @@ namespace FoliosApp.Ventanas
                 //FechaNacimiento = dtpFechaNacimiento.Value;
                 //FechaBautismo = dtpFechaBautismo.Value;
 
-                DialogResult = DialogResult.OK;
-                Close();
+                //DialogResult = DialogResult.OK;
+                //Close();
             }
             else
             {
@@ -64,18 +64,23 @@ namespace FoliosApp.Ventanas
 
             txtNombreUsuario.DataBindings.Add("Text", bsUsuarios, "Nombre", false, DataSourceUpdateMode.Never);
             txtPassword.DataBindings.Add("Text", bsUsuarios, "Clave", false, DataSourceUpdateMode.Never);
-            cbxPermisos.DataBindings.Add("ValueMember", bsUsuarios, "IdNivel", false, DataSourceUpdateMode.Never);
+            cbxPermisos.DataBindings.Add("SelectedValue", bsUsuarios, "IdNivel", false, DataSourceUpdateMode.Never);
         }
 
         private void Inicio()
         {
             List<Usuario> lUsuarios = new List<Usuario>();
             List<UsuarioNivel> lNivelesUsuario = new List<UsuarioNivel>();
-            List<UsuarioNivel> lNivelesUsuario2 = new List<UsuarioNivel>();
             Error error = new Error();
 
             Rutinas.FormatoGrilla(dgvUsuarios);
-            EnlazarControles();
+
+            //Criterios
+            lNivelesUsuario = serviciosUsuarios.GetAllNivelesUsuarios(error);
+
+            cbxPermisos.DataSource = lNivelesUsuario;
+            cbxPermisos.DisplayMember = "Descripcion";
+            cbxPermisos.ValueMember = "IdNivel";
 
             //Grilla
             lUsuarios = serviciosUsuarios.GetAllUsuarios(error);
@@ -89,17 +94,62 @@ namespace FoliosApp.Ventanas
                 MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
             }
 
-            //Criterios
-            lNivelesUsuario = serviciosUsuarios.GetAllNivelesUsuarios(error);
+            EnlazarControles();
+            ModoControles(ModoBotones.FilaSeleccionada);
+        }
 
-            cbxPermisos.DataSource = lNivelesUsuario;
-            cbxPermisos.DisplayMember = "Descripcion";
-            cbxPermisos.ValueMember = "IdNivel";
+        private void ModoControles(ModoBotones modoBotones)
+        {
+            switch(modoBotones)
+            {
+                case ModoBotones.Inicial:
+                    txtNombreUsuario.Enabled = false;
+                    txtPassword.Enabled = false;
+                    cbxPermisos.Enabled = false;
 
-            lNivelesUsuario2 = serviciosUsuarios.GetAllNivelesUsuarios(error);
-            bsUsuariosNIveles.DataSource = lNivelesUsuario2;
+                    btnAgregar.Enabled = true;
+                    btnEditar.Enabled = false;
+                    btnBorrar.Enabled = false;
 
-            //ModoBotonesInferiores(ModoBotones.Inicial);
+                    btnGrabar.Visible = false;
+                    btnGrabar.Enabled = false;
+
+                    btnCancelar.Visible = false;
+                    btnCancelar.Enabled = false;
+                    break;
+
+                case ModoBotones.FilaSeleccionada:
+                    txtNombreUsuario.Enabled = false;
+                    txtPassword.Enabled = false;
+                    cbxPermisos.Enabled = false;
+
+                    btnAgregar.Enabled = true;
+                    btnEditar.Enabled = true;
+                    btnBorrar.Enabled = true;
+
+                    btnGrabar.Visible = false;
+                    btnGrabar.Enabled = false;
+
+                    btnCancelar.Visible = false;
+                    btnCancelar.Enabled = false;
+                    break;
+
+                case ModoBotones.Editar:
+                    txtNombreUsuario.Enabled = true;
+                    txtPassword.Enabled = true;
+                    cbxPermisos.Enabled = true;
+
+                    btnAgregar.Enabled = false;
+                    btnEditar.Enabled = false;
+                    btnBorrar.Enabled = false;
+
+                    btnGrabar.Visible = true;
+                    btnGrabar.Enabled = true;
+
+                    btnCancelar.Visible = true;
+                    btnCancelar.Enabled = true;
+                    break;
+            }
         }
 
         private void ValidarCampos(Error error)
@@ -206,5 +256,21 @@ namespace FoliosApp.Ventanas
             //}
         }
         #endregion
+
+        private void bsUsuarios_CurrentChanged(object sender, EventArgs e)
+        {
+            ModoControles(ModoBotones.FilaSeleccionada);
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            ModoControles(ModoBotones.Editar);
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            ModoControles(ModoBotones.Editar);
+        }
+
     }
 }

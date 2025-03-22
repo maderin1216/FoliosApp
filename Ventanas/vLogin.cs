@@ -41,6 +41,7 @@ namespace FoliosApp.Ventanas
 
                 if(md5 == usuario.Clave)
                 {
+                    serviciosUsuarios.GrabarIngreso(nombreUsuario, 1, error);
                     Hide();
 
                     Principal principal = new Principal();
@@ -48,6 +49,7 @@ namespace FoliosApp.Ventanas
                 }
                 else
                 {
+                    serviciosUsuarios.GrabarIngreso(nombreUsuario, 2, error);
                     MessageBox2.Show(IconosVarios.Error, "", "Acceso incorrecto al sistema", true);
                 }
             }

@@ -173,15 +173,15 @@ namespace FoliosApp
         {
             Error error = new Error();
             List<Bautismo> lBautismos = new List<Bautismo>();
-            List<dynamic> lCriterios;
             List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
+            List<dynamic> lCriterios;
 
             //Grilla dgvBautismos
             lBautismos = serviciosBautismos.GetAllBautismos(error);
-            if(error.CodError > 0)
+            if (error.CodError > 0)
             {
                 bsBautismos.DataSource = lBautismos;
-                lblCantidadResultados.Text = lBautismos.Count.ToString();                
+                lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
             }
             else
             {
@@ -278,7 +278,7 @@ namespace FoliosApp
             if (error.CodError > 0)
             {
                 bsBautismos.DataSource = lBautismos;
-                lblCantidadResultados.Text = lBautismos.Count.ToString();
+                lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
             }
             else
             {
@@ -323,6 +323,87 @@ namespace FoliosApp
         }
 
         #endregion
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Bautismo> lBautismos = new List<Bautismo>();
+            List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
+            Error error = new Error();
+            TabPage tab = tabControl1.SelectedTab;
+
+            //switch(tabControl1.SelectedIndex)
+            //{
+            //    case 0:
+            //        //Grilla dgvBautismos
+            //        lBautismos = serviciosBautismos.GetAllBautismos(error);
+            //        if (error.CodError > 0)
+            //        {
+            //            bsBautismos.DataSource = lBautismos;
+            //            lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
+            //        }
+            //        else
+            //        {
+            //            MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
+            //        }
+            //        break;
+                
+            //    case 1:
+            //        //Grilla dgvConfirmaciones
+            //        lConfirmaciones = serviciosConfirmaciones.GetAllConfirmaciones(error);
+            //        if (error.CodError > 0)
+            //        {
+            //            bsConfirmaciones.DataSource = lConfirmaciones;
+            //            lblResultadosConfirmaciones.Text = lConfirmaciones.Count.ToString();
+            //        }
+            //        else
+            //        {
+            //            MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
+            //        }
+            //        break;
+            //}
+        }
+
+        private void btnAgregarConfirmacion_Click(object sender, EventArgs e)
+        {
+            vConfirmaciones vConfirmaciones = new vConfirmaciones();
+            DialogResult drAgregar;
+            Error error = new Error();
+            Confirmacion confirmacion = new Confirmacion();
+            int iIndiceGrilla;
+
+            vConfirmaciones.modoVentana = ModoVentana.Agregar;
+            vConfirmaciones.lblTitulo.Text = "Agregar certificado confirmación";
+            drAgregar = vConfirmaciones.ShowDialog();
+
+            if (drAgregar == DialogResult.OK)
+            {
+                confirmacion.Documento = vConfirmaciones.Documento;
+                confirmacion.Apellido = vConfirmaciones.Apellido;
+                confirmacion.Nombre = vConfirmaciones.Nombre;
+                confirmacion.Libro = vConfirmaciones.Libro;
+                confirmacion.Folio = vConfirmaciones.Folio;
+                confirmacion.Fecha = vConfirmaciones.FechaConfirmacion;
+
+                serviciosConfirmaciones.AgregarConfirmacion(confirmacion, error);
+
+                if (error.CodError > 0)
+                {
+                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se agregó correctamente.", true);
+
+                    RecargarGrilla();
+                    iIndiceGrilla = ((List<Confirmacion>)bsConfirmaciones.List).FindIndex(b => b.Id == confirmacion.Id);
+
+                    if (iIndiceGrilla > 0)
+                    {
+                        bsConfirmaciones.Position = iIndiceGrilla;
+                    }
+                }
+                else
+                {
+                    MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al agregar el registro.", error.Mensaje, true);
+                }
+            }
+        }
     }
 }
 

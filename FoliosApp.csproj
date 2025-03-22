@@ -83,6 +83,7 @@
     <Compile Include="Comun\Rutinas.cs" />
     <Compile Include="Modelos\Confirmacion.cs" />
     <Compile Include="Modelos\Bautismo.cs" />
+    <Compile Include="Modelos\IngresoSistema.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Modelos\UsuarioNivel.cs" />
     <Compile Include="Principal.cs">
@@ -100,6 +101,12 @@
     <Compile Include="Servicios\ServiciosConfirmaciones.cs" />
     <Compile Include="Servicios\ServiciosUsuarios.cs" />
     <Compile Include="Servicios\ServiciosBautismos.cs" />
+    <Compile Include="Ventanas\vConfirmaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventanas\vConfirmaciones.Designer.cs">
+      <DependentUpon>vConfirmaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\vUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +141,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Ventanas\vConfirmaciones.resx">
+      <DependentUpon>vConfirmaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ventanas\vUsuarios.resx">
       <DependentUpon>vUsuarios.cs</DependentUpon>
     </EmbeddedResource>

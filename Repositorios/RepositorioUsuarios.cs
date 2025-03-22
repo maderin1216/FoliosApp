@@ -41,6 +41,8 @@ namespace FoliosApp.Repositorios
                 {
                     error.CodError = 1;
                     retorno = iEnumUsuarios.FirstOrDefault();
+
+                    dbConnection.Close();
                 }
                 else
                 {
@@ -64,12 +66,14 @@ namespace FoliosApp.Repositorios
             DynamicParameters parametrosDapperLocal = new DynamicParameters();
 
             sSql = @"   SELECT
-                            COALESCE(id, 0) AS Id,
-                            COALESCE(nombre, '') AS Nombre,
-                            COALESCE(clave, '') AS Clave,
-                            COALESCE(id_nivel, 0) AS IdNivel
+                            COALESCE(usuarios.id, 0) AS Id,
+                            COALESCE(usuarios.nombre, '') AS Nombre,
+                            COALESCE(usuarios.clave, '') AS Clave,
+                            COALESCE(usuarios.id_nivel, 0) AS IdNivel,
+                            COALESCE(usuarios_niveles.descripcion, '') AS NivelDescripcion
                         FROM
-                            usuarios;";
+                            usuarios
+                            LEFT JOIN usuarios_niveles ON usuarios_niveles.id = usuarios.id_nivel;";
 
             try
             {
@@ -81,6 +85,8 @@ namespace FoliosApp.Repositorios
                 {
                     error.CodError = 1;
                     retorno = iEnumUsuarios.ToList();
+
+                    dbConnection.Close();
                 }
                 else
                 {
@@ -98,7 +104,7 @@ namespace FoliosApp.Repositorios
 
         public List<UsuarioNivel> GetAllNivelesUsuarios(Error error)
         {
-            IEnumerable<UsuarioNivel> iEnumUsuarios;
+            IEnumerable<UsuarioNivel> iEnumUsuariosNiveles;
             List<UsuarioNivel> retorno = new List<UsuarioNivel>();
             string sSql = "";
             DynamicParameters parametrosDapperLocal = new DynamicParameters();
@@ -106,7 +112,7 @@ namespace FoliosApp.Repositorios
             sSql = @"   SELECT
                             COALESCE(id, 0) AS IdNivel,
                             COALESCE(descripcion, '') AS Descripcion,
-                            COALESCE(nivel, '') AS Nivel
+                            COALESCE(nivel, 0) AS Nivel
                         FROM
                             usuarios_niveles;";
 
@@ -114,12 +120,14 @@ namespace FoliosApp.Repositorios
             {
                 dbConnection = conectorBD.GetConexion(error);
 
-                iEnumUsuarios = dbConnection.Query<UsuarioNivel>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
+                iEnumUsuariosNiveles = dbConnection.Query<UsuarioNivel>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
 
-                if (iEnumUsuarios != null && iEnumUsuarios.Count() > 0)
+                if (iEnumUsuariosNiveles != null && iEnumUsuariosNiveles.Count() > 0)
                 {
                     error.CodError = 1;
-                    retorno = iEnumUsuarios.ToList();
+                    retorno = iEnumUsuariosNiveles.ToList();
+
+                    dbConnection.Close();
                 }
                 else
                 {
@@ -133,6 +141,43 @@ namespace FoliosApp.Repositorios
             }
 
             return retorno;
+        }
+
+        public void GrabarIngreso(string usuario, int tipo, Error error)
+        {
+            string sSql1;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+
+            sSql1 = @"   INSERT INTO ingresos_sistema
+                            (
+                                tipo_ingreso,
+                                usuario,
+                                fecha
+                            )
+                        VALUES
+                            (
+                                @TipoIngreso,
+                                @Usuario,
+                                NOW()
+                            );";
+
+            parametrosLocal.Add("@TipoIngreso", tipo);
+            parametrosLocal.Add("@Usuario", usuario);            
+
+            try
+            {
+                dbConnection = conectorBD.GetConexion(error);
+                dbConnection.Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
+
+                error.CodError = 1;
+
+                dbConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
         }
     }
 }
