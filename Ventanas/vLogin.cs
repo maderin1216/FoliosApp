@@ -41,11 +41,20 @@ namespace FoliosApp.Ventanas
 
                 if(md5 == usuario.Clave)
                 {
-                    serviciosUsuarios.GrabarIngreso(nombreUsuario, 1, error);
-                    Hide();
+                    try
+                    {
+                        serviciosUsuarios.GrabarIngreso(nombreUsuario, 1, error);
+                        
+                        ConectorMySql.CrearConexion(error);
+                        Hide();
 
-                    Principal principal = new Principal();
-                    principal.Show();
+                        Principal principal = new Principal();
+                        principal.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox2.Show(IconosVarios.Error, "", "Ocurrió un error al intentar conectarse al sistema.", true);
+                    }
                 }
                 else
                 {
@@ -55,6 +64,7 @@ namespace FoliosApp.Ventanas
             }
             else
             {
+                serviciosUsuarios.GrabarIngreso(nombreUsuario, 3, error);
                 MessageBox2.Show(IconosVarios.Error, "", "Acceso incorrecto al sistema", true);
             }
             

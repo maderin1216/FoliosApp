@@ -406,10 +406,3 @@ namespace FoliosApp
         }
     }
 }
-
-enum ModoBotones
-{
-    Inicial = 0,
-    Editar = 1,
-    FilaSeleccionada = 2
-}

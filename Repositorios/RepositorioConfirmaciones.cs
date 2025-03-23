@@ -10,9 +10,6 @@ namespace FoliosApp.Repositorios
 {
     public class RepositorioConfirmaciones
     {
-        ConectorMySql conectorBD = new ConectorMySql();
-        IDbConnection dbConnection = null;
-
         public List<Confirmacion> GetAllConfirmaciones(Error error)
         {
             List<Confirmacion> retorno = new List<Confirmacion>();
@@ -34,11 +31,8 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
-                retorno = dbConnection.Query<Confirmacion>(sSql, parametrosDapperLocal, commandType: CommandType.Text).ToList();
+                retorno = ConectorMySql.GetConexionSistema(error).Query<Confirmacion>(sSql, parametrosDapperLocal, commandType: CommandType.Text).ToList();
                 error.CodError = 1;
-
-                dbConnection.Close();
             }
             catch(Exception ex)
             {
@@ -104,12 +98,8 @@ namespace FoliosApp.Repositorios
                         ORDER BY
                             libro ASC, apellido ASC;";
 
-
-                dbConnection = conectorBD.GetConexion(error);
-                retorno = dbConnection.Query<Confirmacion>(sSql, parametrosDapperLocal, commandType: CommandType.Text).ToList();
+                retorno = ConectorMySql.GetConexionSistema(error).Query<Confirmacion>(sSql, parametrosDapperLocal, commandType: CommandType.Text).ToList();
                 error.CodError = 1;
-
-                dbConnection.Close();
             }
             catch (Exception ex)
             {
@@ -157,15 +147,12 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
-                dbConnection.Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
+                ConectorMySql.GetConexionSistema(error).Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
 
-                iIdInsertado = dbConnection.Query<int>(sSql2, parametrosLocal, commandType: CommandType.Text).FirstOrDefault();
+                iIdInsertado = ConectorMySql.GetConexionSistema(error).Query<int>(sSql2, parametrosLocal, commandType: CommandType.Text).FirstOrDefault();
                 confirmacion.Id = iIdInsertado;
 
                 error.CodError = 1;
-
-                dbConnection.Close();
             }
             catch(Exception ex)
             {
@@ -201,11 +188,8 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
-                dbConnection.Execute(sSql, parametrosLocal, commandType: CommandType.Text);
+                ConectorMySql.GetConexionSistema(error).Execute(sSql, parametrosLocal, commandType: CommandType.Text);
                 error.CodError = 1;
-
-                dbConnection.Close();
             }
             catch (Exception ex)
             {
@@ -228,11 +212,8 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
-                dbConnection.Execute(sSql, parametrosLocal, commandType: CommandType.Text);
+                ConectorMySql.GetConexionSistema(error).Execute(sSql, parametrosLocal, commandType: CommandType.Text);
                 error.CodError = 1;
-
-                dbConnection.Close();
             }
             catch (Exception ex)
             {

@@ -80,6 +80,8 @@
     <Compile Include="Comun\MessageBox2.designer.cs">
       <DependentUpon>MessageBox2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comun\ModoBotones.cs" />
+    <Compile Include="Comun\ModoVentana.cs" />
     <Compile Include="Comun\Rutinas.cs" />
     <Compile Include="Modelos\Confirmacion.cs" />
     <Compile Include="Modelos\Bautismo.cs" />
@@ -94,7 +96,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositorios\ConectorMySql.cs" />
+    <Compile Include="Comun\ConectorMySql.cs" />
     <Compile Include="Repositorios\RepositorioConfirmaciones.cs" />
     <Compile Include="Repositorios\RepositorioUsuarios.cs" />
     <Compile Include="Repositorios\RepositorioBautismos.cs" />
@@ -106,6 +108,12 @@
     </Compile>
     <Compile Include="Ventanas\vConfirmaciones.Designer.cs">
       <DependentUpon>vConfirmaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\vUsuariosCambioClave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventanas\vUsuariosCambioClave.Designer.cs">
+      <DependentUpon>vUsuariosCambioClave.cs</DependentUpon>
     </Compile>
     <Compile Include="Ventanas\vUsuarios.cs">
       <SubType>Form</SubType>
@@ -143,6 +151,9 @@
     </Compile>
     <EmbeddedResource Include="Ventanas\vConfirmaciones.resx">
       <DependentUpon>vConfirmaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventanas\vUsuariosCambioClave.resx">
+      <DependentUpon>vUsuariosCambioClave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ventanas\vUsuarios.resx">
       <DependentUpon>vUsuarios.cs</DependentUpon>

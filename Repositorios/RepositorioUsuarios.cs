@@ -5,16 +5,15 @@ using System.Collections.Generic;
 using Dapper;
 using System.Data;
 using System.Linq;
+using FoliosApp.Ventanas;
 
 namespace FoliosApp.Repositorios
 {
     public class RepositorioUsuarios
-    {
-        ConectorMySql conectorBD = new ConectorMySql();
-        IDbConnection dbConnection = null;
-
+    {        
         public Usuario GetUsuario(string nombre, Error error)
         {
+            IDbConnection dbConnectionLocal = null;
             IEnumerable<Usuario> iEnumUsuarios;
             Usuario retorno = new Usuario();
             string sSql = "";
@@ -32,24 +31,72 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
+                dbConnectionLocal = ConectorMySql.GetConexionEfimera(error);
 
                 parametrosDapperLocal.Add("@Nombre", nombre);
-                iEnumUsuarios = dbConnection.Query<Usuario>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
+                iEnumUsuarios = dbConnectionLocal.Query<Usuario>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
 
                 if (iEnumUsuarios != null && iEnumUsuarios.Count() > 0)
                 {
                     error.CodError = 1;
                     retorno = iEnumUsuarios.FirstOrDefault();
 
-                    dbConnection.Close();
+                    dbConnectionLocal.Close();
                 }
                 else
                 {
                     error.CodError = -1;
+                    error.Mensaje = Rutinas.GetMensajeError("No se encontró usuario con la información dada.");
                 }
             }
             catch(Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+
+            return retorno;
+        }
+
+        public Usuario GetUsuario(int idUsuario, Error error)
+        {
+            IDbConnection dbConnectionLocal = null;
+            IEnumerable<Usuario> iEnumUsuarios;
+            Usuario retorno = new Usuario();
+            string sSql = "";
+            DynamicParameters parametrosDapperLocal = new DynamicParameters();
+
+            sSql = @"   SELECT
+                            COALESCE(id, 0) AS Id,
+                            COALESCE(nombre, '') AS Nombre,
+                            COALESCE(clave, '') AS Clave,
+                            COALESCE(id_nivel, 0) AS IdNivel
+                        FROM
+                            usuarios
+                        WHERE
+                            id = @IdUsuario;";
+
+            try
+            {
+                dbConnectionLocal = ConectorMySql.GetConexionSistema(error);
+
+                parametrosDapperLocal.Add("@IdUsuario", idUsuario);
+                iEnumUsuarios = dbConnectionLocal.Query<Usuario>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
+
+                if (iEnumUsuarios != null && iEnumUsuarios.Count() > 0)
+                {
+                    error.CodError = 1;
+                    retorno = iEnumUsuarios.FirstOrDefault();
+
+                    dbConnectionLocal.Close();
+                }
+                else
+                {
+                    error.CodError = -1;
+                    error.Mensaje = Rutinas.GetMensajeError("No se encontró usuario con la información dada.");
+                }
+            }
+            catch (Exception ex)
             {
                 error.Mensaje = Rutinas.GetMensajeError(ex.Message);
                 error.CodError = -1;
@@ -77,16 +124,12 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
-
-                iEnumUsuarios = dbConnection.Query<Usuario>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
+                iEnumUsuarios = ConectorMySql.GetConexionSistema(error).Query<Usuario>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
 
                 if (iEnumUsuarios != null && iEnumUsuarios.Count() > 0)
                 {
                     error.CodError = 1;
                     retorno = iEnumUsuarios.ToList();
-
-                    dbConnection.Close();
                 }
                 else
                 {
@@ -118,16 +161,12 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
-
-                iEnumUsuariosNiveles = dbConnection.Query<UsuarioNivel>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
+                iEnumUsuariosNiveles = ConectorMySql.GetConexionSistema(error).Query<UsuarioNivel>(sSql, parametrosDapperLocal, commandType: CommandType.Text);
 
                 if (iEnumUsuariosNiveles != null && iEnumUsuariosNiveles.Count() > 0)
                 {
                     error.CodError = 1;
                     retorno = iEnumUsuariosNiveles.ToList();
-
-                    dbConnection.Close();
                 }
                 else
                 {
@@ -166,12 +205,131 @@ namespace FoliosApp.Repositorios
 
             try
             {
-                dbConnection = conectorBD.GetConexion(error);
-                dbConnection.Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
+                ConectorMySql.GetConexionEfimera(error).Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
 
                 error.CodError = 1;
+            }
+            catch (Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+        }
 
-                dbConnection.Close();
+        public void UpdateClave(int idUsuario, string nuevaClave, Error error)
+        {
+            string sSql1;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+
+            sSql1 = @"  UPDATE 
+                            usuarios
+                        SET
+                            clave = @NuevaClave
+                        WHERE
+                            usuarios.id = @IdUsuario;";
+
+            parametrosLocal.Add("@IdUsuario", idUsuario);
+            parametrosLocal.Add("@NuevaClave", nuevaClave);
+
+            try
+            {
+                ConectorMySql.GetConexionSistema(error).Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
+
+                error.CodError = 1;
+            }
+            catch (Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+        }
+
+
+        public void AgregarUsuario(Usuario usuario, Error error)
+        {
+            string sSql1;
+            string sSql2;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+            int iIdInsertado;
+
+            sSql1 = @"   INSERT INTO usuarios
+                            (
+                                nombre,
+                                clave,
+                                id_nivel
+                            )
+                        VALUES
+                            (
+                                @Nombre,
+                                @Clave,
+                                @IdNivel
+                            );";
+
+            sSql2 = @"   SELECT LAST_INSERT_ID();";
+
+            parametrosLocal.Add("@Nombre", usuario.Nombre);
+            parametrosLocal.Add("@Clave", usuario.Clave);
+            parametrosLocal.Add("@IdNivel", usuario.IdNivel);
+
+            try
+            {
+                ConectorMySql.GetConexionSistema(error).Execute(sSql1, parametrosLocal, commandType: CommandType.Text);
+
+                iIdInsertado = ConectorMySql.GetConexionSistema(error).Query<int>(sSql2, parametrosLocal, commandType: CommandType.Text).FirstOrDefault();
+                usuario.Id = iIdInsertado;
+
+                error.CodError = 1;
+            }
+            catch (Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+        }
+
+        public void ActualizarUsuario(Usuario usuario, Error error)
+        {
+            string sSql;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+
+            sSql = @"   UPDATE 
+                            usuarios 
+                        SET
+                            id_nivel = @IdNivel
+                        WHERE
+                            id = @Id;";
+
+            parametrosLocal.Add("@Id", usuario.Id);
+            parametrosLocal.Add("@IdNivel", usuario.IdNivel);
+
+            try
+            {
+                ConectorMySql.GetConexionSistema(error).Execute(sSql, parametrosLocal, commandType: CommandType.Text);
+                error.CodError = 1;
+            }
+            catch (Exception ex)
+            {
+                error.Mensaje = Rutinas.GetMensajeError(ex.Message);
+                error.CodError = -1;
+            }
+        }
+
+        public void BorrarUsuario(Usuario usuario, Error error)
+        {
+            string sSql;
+            DynamicParameters parametrosLocal = new DynamicParameters();
+
+            sSql = @"   DELETE FROM
+                            usuarios
+                        WHERE
+                            id = @Id;";
+
+            parametrosLocal.Add("@Id", usuario.Id);
+
+            try
+            {
+                ConectorMySql.GetConexionSistema(error).Execute(sSql, parametrosLocal, commandType: CommandType.Text);
+                error.CodError = 1;
             }
             catch (Exception ex)
             {

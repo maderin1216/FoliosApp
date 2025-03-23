@@ -184,9 +184,3 @@ namespace FoliosApp.Ventanas
         #endregion
     }
 }
-
-public enum ModoVentana
-{
-    Agregar = 0,
-    Modificar =1
-}

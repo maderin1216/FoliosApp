@@ -39,26 +39,28 @@ namespace FoliosApp.Ventanas
             this.lblTitulo = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.claveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idNivelDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nivelDescripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsUsuarios = new System.Windows.Forms.BindingSource(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnVerClave = new System.Windows.Forms.Button();
+            this.txtClave = new System.Windows.Forms.TextBox();
+            this.btnCambiarClave = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.cbxPermisos = new System.Windows.Forms.ComboBox();
             this.txtNombreUsuario = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.idNivelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.claveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idNivelDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nivelDescripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -121,7 +123,7 @@ namespace FoliosApp.Ventanas
             this.btnCerrar.TabIndex = 6;
             this.btnCerrar.Text = "CERRAR";
             this.btnCerrar.UseVisualStyleBackColor = false;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // panel2
             // 
@@ -157,8 +159,8 @@ namespace FoliosApp.Ventanas
             this.dgvUsuarios.AutoGenerateColumns = false;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nombreDataGridViewTextBoxColumn,
+            this.Id,
+            this.Nombre,
             this.claveDataGridViewTextBoxColumn,
             this.idNivelDataGridViewTextBoxColumn1,
             this.nivelDescripcionDataGridViewTextBoxColumn});
@@ -169,6 +171,42 @@ namespace FoliosApp.Ventanas
             this.dgvUsuarios.Size = new System.Drawing.Size(778, 258);
             this.dgvUsuarios.TabIndex = 4;
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // claveDataGridViewTextBoxColumn
+            // 
+            this.claveDataGridViewTextBoxColumn.DataPropertyName = "Clave";
+            this.claveDataGridViewTextBoxColumn.HeaderText = "Clave";
+            this.claveDataGridViewTextBoxColumn.Name = "claveDataGridViewTextBoxColumn";
+            this.claveDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idNivelDataGridViewTextBoxColumn1
+            // 
+            this.idNivelDataGridViewTextBoxColumn1.DataPropertyName = "IdNivel";
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.idNivelDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.idNivelDataGridViewTextBoxColumn1.HeaderText = "IdNivel";
+            this.idNivelDataGridViewTextBoxColumn1.Name = "idNivelDataGridViewTextBoxColumn1";
+            this.idNivelDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // nivelDescripcionDataGridViewTextBoxColumn
+            // 
+            this.nivelDescripcionDataGridViewTextBoxColumn.DataPropertyName = "NivelDescripcion";
+            this.nivelDescripcionDataGridViewTextBoxColumn.HeaderText = "Nivel";
+            this.nivelDescripcionDataGridViewTextBoxColumn.Name = "nivelDescripcionDataGridViewTextBoxColumn";
+            // 
             // bsUsuarios
             // 
             this.bsUsuarios.DataSource = typeof(FoliosApp.Modelos.Usuario);
@@ -176,10 +214,12 @@ namespace FoliosApp.Ventanas
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btnVerClave);
+            this.panel4.Controls.Add(this.txtClave);
+            this.panel4.Controls.Add(this.btnCambiarClave);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.cbxPermisos);
             this.panel4.Controls.Add(this.txtNombreUsuario);
-            this.panel4.Controls.Add(this.txtPassword);
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.label1);
@@ -188,6 +228,49 @@ namespace FoliosApp.Ventanas
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(778, 114);
             this.panel4.TabIndex = 3;
+            // 
+            // btnVerClave
+            // 
+            this.btnVerClave.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnVerClave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVerClave.FlatAppearance.BorderSize = 0;
+            this.btnVerClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVerClave.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.btnVerClave.ForeColor = System.Drawing.Color.White;
+            this.btnVerClave.Location = new System.Drawing.Point(349, 43);
+            this.btnVerClave.Name = "btnVerClave";
+            this.btnVerClave.Size = new System.Drawing.Size(41, 27);
+            this.btnVerClave.TabIndex = 9;
+            this.btnVerClave.Text = "Ver";
+            this.btnVerClave.UseVisualStyleBackColor = false;
+            this.btnVerClave.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnVerClave_MouseDown);
+            this.btnVerClave.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnVerClave_MouseUp);
+            // 
+            // txtClave
+            // 
+            this.txtClave.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtClave.Location = new System.Drawing.Point(157, 43);
+            this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '•';
+            this.txtClave.Size = new System.Drawing.Size(185, 27);
+            this.txtClave.TabIndex = 2;
+            this.txtClave.Visible = false;
+            // 
+            // btnCambiarClave
+            // 
+            this.btnCambiarClave.BackColor = System.Drawing.Color.Green;
+            this.btnCambiarClave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCambiarClave.FlatAppearance.BorderSize = 0;
+            this.btnCambiarClave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCambiarClave.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCambiarClave.ForeColor = System.Drawing.Color.White;
+            this.btnCambiarClave.Location = new System.Drawing.Point(157, 43);
+            this.btnCambiarClave.Name = "btnCambiarClave";
+            this.btnCambiarClave.Size = new System.Drawing.Size(185, 27);
+            this.btnCambiarClave.TabIndex = 8;
+            this.btnCambiarClave.Text = "Cambiar contraseña";
+            this.btnCambiarClave.UseVisualStyleBackColor = false;
+            this.btnCambiarClave.Click += new System.EventHandler(this.btnCambiarClave_Click);
             // 
             // panel5
             // 
@@ -201,6 +284,22 @@ namespace FoliosApp.Ventanas
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(203, 114);
             this.panel5.TabIndex = 6;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.SlateGray;
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.White;
+            this.btnCancelar.Location = new System.Drawing.Point(106, 41);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(88, 30);
+            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.Text = "CANCELAR";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGrabar
             // 
@@ -264,7 +363,7 @@ namespace FoliosApp.Ventanas
             this.btnBorrar.TabIndex = 5;
             this.btnBorrar.Text = "BORRAR";
             this.btnBorrar.UseVisualStyleBackColor = false;
-            this.btnBorrar.Click += new System.EventHandler(this.btnGrabar_Click);
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // cbxPermisos
             // 
@@ -274,7 +373,7 @@ namespace FoliosApp.Ventanas
             this.cbxPermisos.Location = new System.Drawing.Point(157, 76);
             this.cbxPermisos.Name = "cbxPermisos";
             this.cbxPermisos.Size = new System.Drawing.Size(185, 27);
-            this.cbxPermisos.TabIndex = 5;
+            this.cbxPermisos.TabIndex = 3;
             // 
             // txtNombreUsuario
             // 
@@ -282,16 +381,7 @@ namespace FoliosApp.Ventanas
             this.txtNombreUsuario.Location = new System.Drawing.Point(157, 10);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(185, 27);
-            this.txtNombreUsuario.TabIndex = 4;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(157, 43);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(185, 27);
-            this.txtPassword.TabIndex = 3;
+            this.txtNombreUsuario.TabIndex = 1;
             // 
             // label4
             // 
@@ -333,57 +423,6 @@ namespace FoliosApp.Ventanas
             this.idNivelDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.idNivelDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.idNivelDataGridViewTextBoxColumn.ValueMember = "IdNivel";
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.SlateGray;
-            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(106, 41);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(88, 30);
-            this.btnCancelar.TabIndex = 9;
-            this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            // 
-            // claveDataGridViewTextBoxColumn
-            // 
-            this.claveDataGridViewTextBoxColumn.DataPropertyName = "Clave";
-            this.claveDataGridViewTextBoxColumn.HeaderText = "Clave";
-            this.claveDataGridViewTextBoxColumn.Name = "claveDataGridViewTextBoxColumn";
-            this.claveDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // idNivelDataGridViewTextBoxColumn1
-            // 
-            this.idNivelDataGridViewTextBoxColumn1.DataPropertyName = "IdNivel";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.idNivelDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.idNivelDataGridViewTextBoxColumn1.HeaderText = "IdNivel";
-            this.idNivelDataGridViewTextBoxColumn1.Name = "idNivelDataGridViewTextBoxColumn1";
-            this.idNivelDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // nivelDescripcionDataGridViewTextBoxColumn
-            // 
-            this.nivelDescripcionDataGridViewTextBoxColumn.DataPropertyName = "NivelDescripcion";
-            this.nivelDescripcionDataGridViewTextBoxColumn.HeaderText = "Nivel";
-            this.nivelDescripcionDataGridViewTextBoxColumn.Name = "nivelDescripcionDataGridViewTextBoxColumn";
             // 
             // vUsuarios
             // 
@@ -427,7 +466,6 @@ namespace FoliosApp.Ventanas
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ComboBox cbxPermisos;
         private System.Windows.Forms.TextBox txtNombreUsuario;
-        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -439,10 +477,13 @@ namespace FoliosApp.Ventanas
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn claveDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idNivelDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nivelDescripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnCambiarClave;
+        private System.Windows.Forms.TextBox txtClave;
+        private System.Windows.Forms.Button btnVerClave;
     }
 }

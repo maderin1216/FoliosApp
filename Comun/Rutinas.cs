@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Forms;
@@ -14,7 +15,12 @@ namespace FoliosApp.Comun
 
         public static string GetMensajeError(string mensaje, [CallerMemberName] string nombreMetodo = null)
         {
-            return $"{nombreMetodo}: {mensaje}";
+            var stackTrace = new StackTrace();
+            var frame = stackTrace.GetFrame(1); // 1 = método que llamó a este
+            var metodo = frame.GetMethod();
+            var nombreCompleto = $"{metodo.DeclaringType?.Namespace}.{metodo.DeclaringType?.Name}.{nombreMetodo}";
+
+            return $"[{nombreCompleto}]: {mensaje}";
         }
 
         public static void FormatoGrilla(DataGridView aDvg)
