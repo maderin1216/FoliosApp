@@ -15,19 +15,21 @@ namespace FoliosApp.Repositorios
         {
             IDbConnection dbConnectionLocal = null;
             IEnumerable<Usuario> iEnumUsuarios;
-            Usuario retorno = new Usuario();
+            Usuario retorno = null;
             string sSql = "";
             DynamicParameters parametrosDapperLocal = new DynamicParameters();
 
             sSql = @"   SELECT
-                            COALESCE(id, 0) AS Id,
-                            COALESCE(nombre, '') AS Nombre,
-                            COALESCE(clave, '') AS Clave,
-                            COALESCE(id_nivel, 0) AS IdNivel
+                            COALESCE(usuarios.id, 0) AS Id,
+                            COALESCE(usuarios.nombre, '') AS Nombre,
+                            COALESCE(usuarios.clave, '') AS Clave,
+                            COALESCE(usuarios.id_nivel, 0) AS IdNivel,
+                            COALESCE(usuarios_niveles.nivel, 0) AS Nivel
                         FROM
                             usuarios
+                            LEFT JOIN usuarios_niveles ON usuarios_niveles.id = usuarios.id_nivel
                         WHERE
-                            nombre = @Nombre;";
+                            usuarios.nombre = @Nombre;";
 
             try
             {
@@ -62,19 +64,21 @@ namespace FoliosApp.Repositorios
         {
             IDbConnection dbConnectionLocal = null;
             IEnumerable<Usuario> iEnumUsuarios;
-            Usuario retorno = new Usuario();
+            Usuario retorno = null;
             string sSql = "";
             DynamicParameters parametrosDapperLocal = new DynamicParameters();
 
             sSql = @"   SELECT
-                            COALESCE(id, 0) AS Id,
-                            COALESCE(nombre, '') AS Nombre,
-                            COALESCE(clave, '') AS Clave,
-                            COALESCE(id_nivel, 0) AS IdNivel
+                            COALESCE(usuarios.id, 0) AS Id,
+                            COALESCE(usuarios.nombre, '') AS Nombre,
+                            COALESCE(usuarios.clave, '') AS Clave,
+                            COALESCE(usuarios.id_nivel, 0) AS IdNivel,
+                            COALESCE(usuarios_niveles.nivel, 0) AS Nivel
                         FROM
                             usuarios
+                            LEFT JOIN usuarios_niveles ON usuarios_niveles.id = usuarios.id_nivel
                         WHERE
-                            id = @IdUsuario;";
+                            usuarios.id = @IdUsuario;";
 
             try
             {

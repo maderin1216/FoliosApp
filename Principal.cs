@@ -4,12 +4,6 @@ using FoliosApp.Servicios;
 using FoliosApp.Ventanas;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FoliosApp
@@ -170,71 +164,11 @@ namespace FoliosApp
         }
 
         private void Principal_Load(object sender, EventArgs e)
-        {
-            Error error = new Error();
-            List<Bautismo> lBautismos = new List<Bautismo>();
-            List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
-            List<dynamic> lCriterios;
-
-            //Grilla dgvBautismos
-            lBautismos = serviciosBautismos.GetAllBautismos(error);
-            if (error.CodError > 0)
-            {
-                bsBautismos.DataSource = lBautismos;
-                lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
-            }
-            else
-            {
-                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
-            }
-
-            //Grilla dgvConfirmaciones
-            lConfirmaciones = serviciosConfirmaciones.GetAllConfirmaciones(error);
-            if (error.CodError > 0)
-            {
-                bsConfirmaciones.DataSource = lConfirmaciones;
-                lblResultadosConfirmaciones.Text = lConfirmaciones.Count.ToString();
-            }
-            else
-            {
-                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
-            }
-
-            //Criterios
-            lCriterios = new List<dynamic>
-            {
-                new { 
-                    Texto = "Todas las columnas",
-                    Valor = 0
-                },
-                new { 
-                    Texto = "Documento",
-                    Valor = 1
-                },
-                new {
-                    Texto = "Apellido",
-                    Valor = 2
-                },
-                new {
-                    Texto = "Nombre",
-                    Valor = 3
-                },
-                new {
-                    Texto = "Libro",
-                    Valor = 4
-                },
-                new {
-                    Texto = "Folio",
-                    Valor = 5
-                },                
-                new {
-                    Texto = "Apellido + Nombre",
-                    Valor = 6
-                }
-            };
-            cbxCriterios.DataSource = lCriterios;
-            cbxCriterios.DisplayMember = "Texto";
-            cbxCriterios.ValueMember = "Valor";
+        {            
+            ConfiguracionesBautismos();
+            ConfiguracionesConfirmaciones();
+          
+            SetPermisos();
         }
 
         private void txtFiltro_KeyDown(object sender, KeyEventArgs e)
@@ -248,119 +182,6 @@ namespace FoliosApp
             {
                 dgvBautismos.Focus();
             }
-        }
-
-        #endregion
-
-        #region ToolStripMenuItem
-        private void administrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            vUsuarios vUsuarios = new vUsuarios();
-
-            vUsuarios.ShowDialog();
-        }
-
-        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-        #endregion
-
-        #region Métodos
-        private void Busqueda()
-        {
-            Error error = new Error();
-            List<Bautismo> lBautismos = new List<Bautismo>();
-            int iCriterio;
-
-            iCriterio = Convert.ToInt32(cbxCriterios.SelectedValue);
-            lBautismos = serviciosBautismos.GetBautismosCriterio((CriteriosBusqueda)iCriterio, txtFiltro.Text, error);
-            if (error.CodError > 0)
-            {
-                bsBautismos.DataSource = lBautismos;
-                lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
-            }
-            else
-            {
-                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
-            }
-        }
-
-        private void Inicio()
-        {
-            Rutinas.FormatoGrilla(dgvBautismos);
-            Rutinas.FormatoGrilla(dgvConfirmaciones);
-            ModoBotonesInferiores(ModoBotones.Inicial);
-        }
-
-        private void ModoBotonesInferiores(ModoBotones modo)
-        {
-            switch(modo)
-            {
-                case ModoBotones.Inicial:
-                    btnAgregar.Enabled = true;
-                    btnEditar.Enabled = false;
-                    btnBorrar.Enabled = false;
-                    break;
-
-                case ModoBotones.Editar:
-                    btnAgregar.Enabled = false;
-                    btnEditar.Enabled = false;
-                    btnBorrar.Enabled = false;
-                    break;
-
-                case ModoBotones.FilaSeleccionada:
-                    btnAgregar.Enabled = true;
-                    btnEditar.Enabled = true;
-                    btnBorrar.Enabled = true;
-                    break;
-            }
-        }
-
-        private void RecargarGrilla()
-        {
-            Busqueda();
-        }
-
-        #endregion
-
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<Bautismo> lBautismos = new List<Bautismo>();
-            List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
-            Error error = new Error();
-            TabPage tab = tabControl1.SelectedTab;
-
-            //switch(tabControl1.SelectedIndex)
-            //{
-            //    case 0:
-            //        //Grilla dgvBautismos
-            //        lBautismos = serviciosBautismos.GetAllBautismos(error);
-            //        if (error.CodError > 0)
-            //        {
-            //            bsBautismos.DataSource = lBautismos;
-            //            lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
-            //        }
-            //        else
-            //        {
-            //            MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
-            //        }
-            //        break;
-                
-            //    case 1:
-            //        //Grilla dgvConfirmaciones
-            //        lConfirmaciones = serviciosConfirmaciones.GetAllConfirmaciones(error);
-            //        if (error.CodError > 0)
-            //        {
-            //            bsConfirmaciones.DataSource = lConfirmaciones;
-            //            lblResultadosConfirmaciones.Text = lConfirmaciones.Count.ToString();
-            //        }
-            //        else
-            //        {
-            //            MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
-            //        }
-            //        break;
-            //}
         }
 
         private void btnAgregarConfirmacion_Click(object sender, EventArgs e)
@@ -404,5 +225,189 @@ namespace FoliosApp
                 }
             }
         }
+
+        #endregion
+
+        #region ToolStripMenuItem
+        private void administrarUsuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vUsuarios vUsuarios = new vUsuarios();
+
+            vUsuarios.ShowDialog();
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            vAbout vAbout = new vAbout();
+
+            vAbout.ShowDialog();
+        }
+        #endregion
+
+        #region Métodos
+        private void Busqueda()
+        {
+            Error error = new Error();
+            List<Bautismo> lBautismos = new List<Bautismo>();
+            int iCriterio;
+
+            iCriterio = Convert.ToInt32(cbxCriteriosBautismo.SelectedValue);
+            lBautismos = serviciosBautismos.GetBautismosCriterio((CriteriosBusqueda)iCriterio, txtFiltroBautismos.Text, error);
+            if (error.CodError > 0)
+            {
+                bsBautismos.DataSource = lBautismos;
+                lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
+            }
+            else
+            {
+                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
+            }
+        }
+
+        private void ConfiguracionesBautismos()
+        {
+            Error error = new Error();
+            List<Bautismo> lBautismos = new List<Bautismo>();
+            List<dynamic> lCriterios;
+
+            //Grilla dgvBautismos
+            lBautismos = serviciosBautismos.GetAllBautismos(error);
+            if (error.CodError > 0)
+            {
+                bsBautismos.DataSource = lBautismos;
+                lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
+            }
+            else
+            {
+                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
+            }
+
+            //Criterios búsqueda p/bautismos
+            lCriterios = new List<dynamic>
+            {
+                new {
+                    Texto = "Todas las columnas",
+                    Valor = 0
+                },
+                new {
+                    Texto = "Documento",
+                    Valor = 1
+                },
+                new {
+                    Texto = "Apellido",
+                    Valor = 2
+                },
+                new {
+                    Texto = "Nombre",
+                    Valor = 3
+                },
+                new {
+                    Texto = "Libro",
+                    Valor = 4
+                },
+                new {
+                    Texto = "Folio",
+                    Valor = 5
+                },
+                new {
+                    Texto = "Apellido + Nombre",
+                    Valor = 6
+                },
+                new {
+                    Texto = "Fecha de nacimiento",
+                    Valor = 7
+                },
+                new {
+                    Texto = "Fecha de bautismo",
+                    Valor = 8
+                }
+            };
+            cbxCriteriosBautismo.DataSource = lCriterios;
+            cbxCriteriosBautismo.DisplayMember = "Texto";
+            cbxCriteriosBautismo.ValueMember = "Valor";
+        }
+
+        private void ConfiguracionesConfirmaciones()
+        {
+            Error error = new Error();
+            List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
+
+            //Grilla dgvConfirmaciones
+            lConfirmaciones = serviciosConfirmaciones.GetAllConfirmaciones(error);
+            if (error.CodError > 0)
+            {
+                bsConfirmaciones.DataSource = lConfirmaciones;
+                lblResultadosConfirmaciones.Text = lConfirmaciones.Count.ToString();
+            }
+            else
+            {
+                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
+            }
+        }
+
+        private void Inicio()
+        {
+            Rutinas.FormatoGrilla(dgvBautismos);
+            Rutinas.FormatoGrilla(dgvConfirmaciones);
+            ModoBotonesInferiores(ModoBotones.Inicial);
+        }
+
+        private void ModoBotonesInferiores(ModoBotones modo)
+        {
+            switch(modo)
+            {
+                case ModoBotones.Inicial:
+                    btnAgregarBautismo.Enabled = true;
+                    btnEditarBautismo.Enabled = false;
+                    btnBorrarBautismo.Enabled = false;
+                    break;
+
+                case ModoBotones.Editar:
+                    btnAgregarBautismo.Enabled = false;
+                    btnEditarBautismo.Enabled = false;
+                    btnBorrarBautismo.Enabled = false;
+                    break;
+
+                case ModoBotones.FilaSeleccionada:
+                    btnAgregarBautismo.Enabled = true;
+                    btnEditarBautismo.Enabled = true;
+                    btnBorrarBautismo.Enabled = true;
+                    break;
+            }
+        }
+
+        private void RecargarGrilla()
+        {
+            Busqueda();
+        }
+
+        private void SetPermisos()
+        {
+            switch (UsuarioActivo.NivelPermisos)
+            {
+                case 1:
+                    break;
+
+                case 2:
+                    //Barra de tareas
+                    usuariosToolStripMenuItem.Visible = false;
+                    librosToolStripMenuItem.Visible = false;
+
+                    //Pestaña bautismos
+                    btnEditarBautismo.Visible = false;
+                    btnBorrarBautismo.Visible = false;
+
+                    //Pestaña confirmaciones
+                    btnEditarConfirmacion.Visible = false;
+                    btnBorrarConfirmacion.Visible = false;
+                    break;
+            }
+        }
+        #endregion
     }
 }

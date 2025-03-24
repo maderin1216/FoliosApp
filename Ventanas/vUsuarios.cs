@@ -74,28 +74,35 @@ namespace FoliosApp.Ventanas
 
             if (usuario.Nombre.ToUpper() != "ADMIN")
             {
-                drBorrar = MessageBox2.Show(IconosVarios.Advertencia, "Confirmar borrado", "¿Está seguro que desea eliminar el registro seleccionado?");
-
-                if (drBorrar == DialogResult.Yes)
+                if (usuario.Nombre.ToUpper() != UsuarioActivo._usuario.Nombre.ToUpper())
                 {
-                    serviciosUsuarios.BorrarUsuario(usuario, error);
+                    drBorrar = MessageBox2.Show(IconosVarios.Advertencia, "Confirmar borrado", "¿Está seguro que desea eliminar el registro seleccionado?");
 
-                    if (error.CodError > 0)
+                    if (drBorrar == DialogResult.Yes)
                     {
-                        MessageBox2.Show(IconosVarios.Tilde, "", "El registro se eliminó correctamente.", true);
+                        serviciosUsuarios.BorrarUsuario(usuario, error);
 
-                        CargaInicialGrilla();
-                        bsUsuarios.Position = 0;
+                        if (error.CodError > 0)
+                        {
+                            MessageBox2.Show(IconosVarios.Tilde, "", "El registro se eliminó correctamente.", true);
+
+                            CargaInicialGrilla();
+                            bsUsuarios.Position = 0;
+                        }
+                        else
+                        {
+                            MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al eliminar el registro.", error.Mensaje, true);
+                        }
                     }
-                    else
-                    {
-                        MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al eliminar el registro.", error.Mensaje, true);
-                    }
+                }
+                else
+                {
+                    MessageBox2.Show(IconosVarios.Advertencia, "", "No se puede borrar el usuario activo", true);
                 }
             }
             else
             {
-                MessageBox2.Show(IconosVarios.Advertencia, "No se puede borrar el usuario 'Admin'", error.Mensaje, true);
+                MessageBox2.Show(IconosVarios.Advertencia, "", "No se puede borrar el usuario 'Admin'", true);
             }
         }
 
@@ -136,11 +143,11 @@ namespace FoliosApp.Ventanas
 
                 if (error.CodError > 0)
                 {
-                    MessageBox2.Show(IconosVarios.Tilde, "", $"La clave del usuario {vUsuariosCambioClave.NombreUsuario} se actualizó correctamente.", true);
+                    MessageBox2.Show(IconosVarios.Tilde, "", $"La clave del usuario '{vUsuariosCambioClave.NombreUsuario}' se actualizó correctamente.", true);
                 }
                 else
                 {
-                    MessageBox2.Show(IconosVarios.Error, "", $"La clave del usuario {vUsuariosCambioClave.NombreUsuario} no pudo ser actualizada. Detalle: {error.Mensaje}", true);
+                    MessageBox2.Show(IconosVarios.Error, "", $"La clave del usuario '{vUsuariosCambioClave.NombreUsuario}' no pudo ser actualizada. Detalle: {error.Mensaje}", true);
                 }
             }
         }

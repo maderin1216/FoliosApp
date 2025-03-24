@@ -82,6 +82,12 @@ namespace FoliosApp.Repositorios
                         criterioString = $@"    CONCAT(apellido, ' ', nombre) LIKE '%{busqueda}%'
                                                 OR CONCAT(nombre, ' ', apellido) LIKE '%{busqueda}'";
                         break;
+                    case CriteriosBusqueda.FechaNacimiento:
+                        criterioString = $"fecha_nacimiento = '{(DateTime.TryParse(busqueda, out DateTime resultNacimiento) ? resultNacimiento.ToString("yyyy-MM-dd") : "")}'";
+                        break;
+                    case CriteriosBusqueda.FechaBautismo:
+                        criterioString = $"fecha_bautismo = '{(DateTime.TryParse(busqueda, out DateTime resultBautismo) ? resultBautismo.ToString("yyyy-MM-dd") : "")}'";
+                        break;
                 }
 
                 sSql = $@"  SELECT

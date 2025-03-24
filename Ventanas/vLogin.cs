@@ -44,7 +44,9 @@ namespace FoliosApp.Ventanas
                     try
                     {
                         serviciosUsuarios.GrabarIngreso(nombreUsuario, 1, error);
-                        
+
+                        UsuarioActivo.SetUsuarioActivo(usuario);
+
                         ConectorMySql.CrearConexion(error);
                         Hide();
 

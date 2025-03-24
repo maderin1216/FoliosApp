@@ -7,5 +7,6 @@
         public string Clave { get; set; }
         public int IdNivel { get; set; }
         public string NivelDescripcion { get; set; }
+        public int Nivel { get; set; }
     }
 }

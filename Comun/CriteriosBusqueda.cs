@@ -8,6 +8,8 @@
         Nombre = 3,
         Libro = 4,
         Folio = 5,
-        ApellidoNombre = 6
+        ApellidoNombre = 6,
+        FechaNacimiento = 7,
+        FechaBautismo = 8
     }
 }

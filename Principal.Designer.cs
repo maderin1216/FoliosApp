@@ -30,6 +30,8 @@ namespace FoliosApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpBautismos = new System.Windows.Forms.TabPage();
@@ -37,18 +39,18 @@ namespace FoliosApp
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnBuscarBautismos = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbxCriterios = new System.Windows.Forms.ComboBox();
+            this.cbxCriteriosBautismo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.txtFiltroBautismos = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgvBautismos = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.btnBorrar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnBorrarBautismo = new System.Windows.Forms.Button();
+            this.btnEditarBautismo = new System.Windows.Forms.Button();
+            this.btnAgregarBautismo = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lblCantidadResultadosBautismo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,12 +80,8 @@ namespace FoliosApp
             this.librosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeLibrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.libroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.folioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bsBautismos = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documentoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +91,14 @@ namespace FoliosApp
             this.folioDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsConfirmaciones = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaBautismo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.libroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpBautismos.SuspendLayout();
@@ -140,7 +146,6 @@ namespace FoliosApp
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1225, 576);
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tpBautismos
             // 
@@ -195,32 +200,32 @@ namespace FoliosApp
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnBuscar);
+            this.panel3.Controls.Add(this.btnBuscarBautismos);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.cbxCriterios);
+            this.panel3.Controls.Add(this.cbxCriteriosBautismo);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Controls.Add(this.txtFiltro);
+            this.panel3.Controls.Add(this.txtFiltroBautismos);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 53);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1203, 44);
             this.panel3.TabIndex = 1;
             // 
-            // btnBuscar
+            // btnBuscarBautismos
             // 
-            this.btnBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnBuscar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBuscar.FlatAppearance.BorderSize = 0;
-            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuscar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(662, 9);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 30);
-            this.btnBuscar.TabIndex = 4;
-            this.btnBuscar.Text = "BUSCAR";
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.btnBuscarBautismos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnBuscarBautismos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBuscarBautismos.FlatAppearance.BorderSize = 0;
+            this.btnBuscarBautismos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarBautismos.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarBautismos.ForeColor = System.Drawing.Color.White;
+            this.btnBuscarBautismos.Location = new System.Drawing.Point(662, 9);
+            this.btnBuscarBautismos.Name = "btnBuscarBautismos";
+            this.btnBuscarBautismos.Size = new System.Drawing.Size(75, 30);
+            this.btnBuscarBautismos.TabIndex = 4;
+            this.btnBuscarBautismos.Text = "BUSCAR";
+            this.btnBuscarBautismos.UseVisualStyleBackColor = false;
+            this.btnBuscarBautismos.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label3
             // 
@@ -232,14 +237,14 @@ namespace FoliosApp
             this.label3.TabIndex = 3;
             this.label3.Text = "Criterio";
             // 
-            // cbxCriterios
+            // cbxCriteriosBautismo
             // 
-            this.cbxCriterios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCriterios.FormattingEnabled = true;
-            this.cbxCriterios.Location = new System.Drawing.Point(429, 13);
-            this.cbxCriterios.Name = "cbxCriterios";
-            this.cbxCriterios.Size = new System.Drawing.Size(215, 26);
-            this.cbxCriterios.TabIndex = 2;
+            this.cbxCriteriosBautismo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCriteriosBautismo.FormattingEnabled = true;
+            this.cbxCriteriosBautismo.Location = new System.Drawing.Point(429, 13);
+            this.cbxCriteriosBautismo.Name = "cbxCriteriosBautismo";
+            this.cbxCriteriosBautismo.Size = new System.Drawing.Size(215, 26);
+            this.cbxCriteriosBautismo.TabIndex = 2;
             // 
             // label2
             // 
@@ -251,13 +256,13 @@ namespace FoliosApp
             this.label2.TabIndex = 1;
             this.label2.Text = "Filtro";
             // 
-            // txtFiltro
+            // txtFiltroBautismos
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(54, 13);
-            this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(290, 26);
-            this.txtFiltro.TabIndex = 0;
-            this.txtFiltro.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
+            this.txtFiltroBautismos.Location = new System.Drawing.Point(54, 13);
+            this.txtFiltroBautismos.Name = "txtFiltroBautismos";
+            this.txtFiltroBautismos.Size = new System.Drawing.Size(290, 26);
+            this.txtFiltroBautismos.TabIndex = 0;
+            this.txtFiltroBautismos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltro_KeyDown);
             // 
             // panel4
             // 
@@ -277,6 +282,8 @@ namespace FoliosApp
             this.documentoDataGridViewTextBoxColumn,
             this.apellidoDataGridViewTextBoxColumn,
             this.nombreDataGridViewTextBoxColumn,
+            this.FechaNacimiento,
+            this.FechaBautismo,
             this.libroDataGridViewTextBoxColumn,
             this.folioDataGridViewTextBoxColumn});
             this.dgvBautismos.DataSource = this.bsBautismos;
@@ -298,62 +305,62 @@ namespace FoliosApp
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.btnBorrar);
-            this.panel7.Controls.Add(this.btnEditar);
-            this.panel7.Controls.Add(this.btnAgregar);
+            this.panel7.Controls.Add(this.btnBorrarBautismo);
+            this.panel7.Controls.Add(this.btnEditarBautismo);
+            this.panel7.Controls.Add(this.btnAgregarBautismo);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(325, 44);
             this.panel7.TabIndex = 1;
             // 
-            // btnBorrar
+            // btnBorrarBautismo
             // 
-            this.btnBorrar.BackColor = System.Drawing.Color.Red;
-            this.btnBorrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBorrar.FlatAppearance.BorderSize = 0;
-            this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBorrar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBorrar.ForeColor = System.Drawing.Color.White;
-            this.btnBorrar.Location = new System.Drawing.Point(217, 7);
-            this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(88, 30);
-            this.btnBorrar.TabIndex = 7;
-            this.btnBorrar.Text = "BORRAR";
-            this.btnBorrar.UseVisualStyleBackColor = false;
-            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            this.btnBorrarBautismo.BackColor = System.Drawing.Color.Red;
+            this.btnBorrarBautismo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrarBautismo.FlatAppearance.BorderSize = 0;
+            this.btnBorrarBautismo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrarBautismo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBorrarBautismo.ForeColor = System.Drawing.Color.White;
+            this.btnBorrarBautismo.Location = new System.Drawing.Point(217, 7);
+            this.btnBorrarBautismo.Name = "btnBorrarBautismo";
+            this.btnBorrarBautismo.Size = new System.Drawing.Size(88, 30);
+            this.btnBorrarBautismo.TabIndex = 7;
+            this.btnBorrarBautismo.Text = "BORRAR";
+            this.btnBorrarBautismo.UseVisualStyleBackColor = false;
+            this.btnBorrarBautismo.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
-            // btnEditar
+            // btnEditarBautismo
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.Teal;
-            this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditar.FlatAppearance.BorderSize = 0;
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(112, 7);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(88, 30);
-            this.btnEditar.TabIndex = 6;
-            this.btnEditar.Text = "EDITAR";
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.btnEditarBautismo.BackColor = System.Drawing.Color.Teal;
+            this.btnEditarBautismo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditarBautismo.FlatAppearance.BorderSize = 0;
+            this.btnEditarBautismo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditarBautismo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarBautismo.ForeColor = System.Drawing.Color.White;
+            this.btnEditarBautismo.Location = new System.Drawing.Point(112, 7);
+            this.btnEditarBautismo.Name = "btnEditarBautismo";
+            this.btnEditarBautismo.Size = new System.Drawing.Size(88, 30);
+            this.btnEditarBautismo.TabIndex = 6;
+            this.btnEditarBautismo.Text = "EDITAR";
+            this.btnEditarBautismo.UseVisualStyleBackColor = false;
+            this.btnEditarBautismo.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnAgregar
+            // btnAgregarBautismo
             // 
-            this.btnAgregar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.FlatAppearance.BorderSize = 0;
-            this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregar.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Location = new System.Drawing.Point(7, 7);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(88, 30);
-            this.btnAgregar.TabIndex = 5;
-            this.btnAgregar.Text = "AGREGAR";
-            this.btnAgregar.UseVisualStyleBackColor = false;
-            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            this.btnAgregarBautismo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnAgregarBautismo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAgregarBautismo.FlatAppearance.BorderSize = 0;
+            this.btnAgregarBautismo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarBautismo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarBautismo.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarBautismo.Location = new System.Drawing.Point(7, 7);
+            this.btnAgregarBautismo.Name = "btnAgregarBautismo";
+            this.btnAgregarBautismo.Size = new System.Drawing.Size(88, 30);
+            this.btnAgregarBautismo.TabIndex = 5;
+            this.btnAgregarBautismo.Text = "AGREGAR";
+            this.btnAgregarBautismo.UseVisualStyleBackColor = false;
+            this.btnAgregarBautismo.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // panel6
             // 
@@ -634,6 +641,7 @@ namespace FoliosApp
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usuariosToolStripMenuItem,
             this.librosToolStripMenuItem,
+            this.ayudaToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -678,42 +686,20 @@ namespace FoliosApp
             this.salirToolStripMenuItem.Text = "&Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
-            // idDataGridViewTextBoxColumn
+            // ayudaToolStripMenuItem
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sobreToolStripMenuItem});
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
             // 
-            // documentoDataGridViewTextBoxColumn
+            // sobreToolStripMenuItem
             // 
-            this.documentoDataGridViewTextBoxColumn.DataPropertyName = "Documento";
-            this.documentoDataGridViewTextBoxColumn.HeaderText = "Documento";
-            this.documentoDataGridViewTextBoxColumn.Name = "documentoDataGridViewTextBoxColumn";
-            // 
-            // apellidoDataGridViewTextBoxColumn
-            // 
-            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            // 
-            // libroDataGridViewTextBoxColumn
-            // 
-            this.libroDataGridViewTextBoxColumn.DataPropertyName = "Libro";
-            this.libroDataGridViewTextBoxColumn.HeaderText = "Libro";
-            this.libroDataGridViewTextBoxColumn.Name = "libroDataGridViewTextBoxColumn";
-            // 
-            // folioDataGridViewTextBoxColumn
-            // 
-            this.folioDataGridViewTextBoxColumn.DataPropertyName = "Folio";
-            this.folioDataGridViewTextBoxColumn.HeaderText = "Folio";
-            this.folioDataGridViewTextBoxColumn.Name = "folioDataGridViewTextBoxColumn";
+            this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.sobreToolStripMenuItem.Text = "Sobre...";
+            this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
             // 
             // bsBautismos
             // 
@@ -766,6 +752,61 @@ namespace FoliosApp
             // bsConfirmaciones
             // 
             this.bsConfirmaciones.DataSource = typeof(FoliosApp.Modelos.Confirmacion);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // documentoDataGridViewTextBoxColumn
+            // 
+            this.documentoDataGridViewTextBoxColumn.DataPropertyName = "Documento";
+            this.documentoDataGridViewTextBoxColumn.HeaderText = "Documento";
+            this.documentoDataGridViewTextBoxColumn.Name = "documentoDataGridViewTextBoxColumn";
+            // 
+            // apellidoDataGridViewTextBoxColumn
+            // 
+            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // FechaNacimiento
+            // 
+            this.FechaNacimiento.DataPropertyName = "FechaNacimiento";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.FechaNacimiento.DefaultCellStyle = dataGridViewCellStyle1;
+            this.FechaNacimiento.HeaderText = "Nacimiento";
+            this.FechaNacimiento.Name = "FechaNacimiento";
+            // 
+            // FechaBautismo
+            // 
+            this.FechaBautismo.DataPropertyName = "FechaBautismo";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.FechaBautismo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.FechaBautismo.HeaderText = "Bautismo";
+            this.FechaBautismo.Name = "FechaBautismo";
+            // 
+            // libroDataGridViewTextBoxColumn
+            // 
+            this.libroDataGridViewTextBoxColumn.DataPropertyName = "Libro";
+            this.libroDataGridViewTextBoxColumn.HeaderText = "Libro";
+            this.libroDataGridViewTextBoxColumn.Name = "libroDataGridViewTextBoxColumn";
+            // 
+            // folioDataGridViewTextBoxColumn
+            // 
+            this.folioDataGridViewTextBoxColumn.DataPropertyName = "Folio";
+            this.folioDataGridViewTextBoxColumn.HeaderText = "Folio";
+            this.folioDataGridViewTextBoxColumn.Name = "folioDataGridViewTextBoxColumn";
             // 
             // Principal
             // 
@@ -833,23 +874,17 @@ namespace FoliosApp
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.BindingSource bsBautismos;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbxCriterios;
+        private System.Windows.Forms.ComboBox cbxCriteriosBautismo;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtFiltro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn documentoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn libroDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.TextBox txtFiltroBautismos;
+        private System.Windows.Forms.Button btnBuscarBautismos;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lblCantidadResultadosBautismo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Button btnBorrar;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnBorrarBautismo;
+        private System.Windows.Forms.Button btnEditarBautismo;
+        private System.Windows.Forms.Button btnAgregarBautismo;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
@@ -883,6 +918,16 @@ namespace FoliosApp
         private System.Windows.Forms.DataGridViewTextBoxColumn libroDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn documentoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaNacimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaBautismo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn libroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn;
     }
 }
 
