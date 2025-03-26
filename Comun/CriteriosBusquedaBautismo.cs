@@ -1,6 +1,6 @@
 ﻿namespace FoliosApp.Comun
 {
-    public enum CriteriosBusqueda
+    public enum CriteriosBusquedaBautismo
     {
         TodasLasColumnas = 0,
         Documento = 1,

@@ -14,7 +14,7 @@ namespace FoliosApp.Servicios
             return repositorioBautismos.GetAllBautismos(error);
         }
 
-        public List<Bautismo> GetBautismosCriterio(CriteriosBusqueda criterio, string busqueda, Error error)
+        public List<Bautismo> GetBautismosCriterio(CriteriosBusquedaBautismo criterio, string busqueda, Error error)
         {
             return repositorioBautismos.GetBautismosCriterio(criterio, busqueda, error);
         }

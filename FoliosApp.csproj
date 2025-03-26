@@ -71,7 +71,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Comun\CriteriosBusqueda.cs" />
+    <Compile Include="Comun\CriteriosBusquedaBautismo.cs" />
+    <Compile Include="Comun\CriteriosBusquedaConfirmacion.cs" />
     <Compile Include="Comun\Error.cs" />
     <Compile Include="Comun\IconosVarios.cs" />
     <Compile Include="Comun\MessageBox2.cs">

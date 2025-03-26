@@ -60,11 +60,53 @@ namespace FoliosApp
                 {
                     MessageBox2.Show(IconosVarios.Tilde, "", "El registro se agregó correctamente.", true);
 
-                    RecargarGrilla();
+                    RecargarGrillaBautismos();
                     iIndiceGrilla = ((List<Bautismo>)bsBautismos.List).FindIndex(b => b.Id == bautismo.Id);
                     if (iIndiceGrilla > 0)
                     {
                         bsBautismos.Position = iIndiceGrilla;
+                    }
+                }
+                else
+                {
+                    MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al agregar el registro.", error.Mensaje, true);
+                }
+            }
+        }
+
+        private void btnAgregarConfirmacion_Click(object sender, EventArgs e)
+        {
+            vConfirmaciones vConfirmaciones = new vConfirmaciones();
+            DialogResult drAgregar;
+            Error error = new Error();
+            Confirmacion confirmacion = new Confirmacion();
+            int iIndiceGrilla;
+
+            vConfirmaciones.modoVentana = ModoVentana.Agregar;
+            vConfirmaciones.lblTitulo.Text = "Agregar certificado de confirmación";
+            drAgregar = vConfirmaciones.ShowDialog();
+
+            if (drAgregar == DialogResult.OK)
+            {
+                confirmacion.Documento = vConfirmaciones.Documento;
+                confirmacion.Apellido = vConfirmaciones.Apellido;
+                confirmacion.Nombre = vConfirmaciones.Nombre;
+                confirmacion.Libro = vConfirmaciones.Libro;
+                confirmacion.Folio = vConfirmaciones.Folio;
+                confirmacion.Fecha = vConfirmaciones.FechaConfirmacion;
+
+                serviciosConfirmaciones.AgregarConfirmacion(confirmacion, error);
+
+                if (error.CodError > 0)
+                {
+                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se agregó correctamente.", true);
+
+                    RecargarGrillaConfirmaciones();
+                    iIndiceGrilla = ((List<Confirmacion>)bsConfirmaciones.List).FindIndex(b => b.Id == confirmacion.Id);
+
+                    if (iIndiceGrilla > 0)
+                    {
+                        bsConfirmaciones.Position = iIndiceGrilla;
                     }
                 }
                 else
@@ -91,8 +133,35 @@ namespace FoliosApp
                 {
                     MessageBox2.Show(IconosVarios.Tilde, "", "El registro se eliminó correctamente.", true);
 
-                    RecargarGrilla();
+                    RecargarGrillaBautismos();
                     bsBautismos.Position = 0;
+                }
+                else
+                {
+                    MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al eliminar el registro.", error.Mensaje, true);
+                }
+            }
+        }
+
+        private void btnBorrarConfirmacion_Click(object sender, EventArgs e)
+        {
+            Error error = new Error();
+            DialogResult drBorrar;
+            Confirmacion confirmacion = new Confirmacion();
+
+            drBorrar = MessageBox2.Show(IconosVarios.Advertencia, "Confirmar borrado", "¿Está seguro que desea eliminar el registro seleccionado?");
+
+            if (drBorrar == DialogResult.Yes)
+            {
+                confirmacion = (Confirmacion)bsConfirmaciones.Current;
+                serviciosConfirmaciones.BorrarConfirmacion(confirmacion, error);
+
+                if (error.CodError > 0)
+                {
+                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se eliminó correctamente.", true);
+
+                    RecargarGrillaConfirmaciones();
+                    bsConfirmaciones.Position = 0;
                 }
                 else
                 {
@@ -103,7 +172,12 @@ namespace FoliosApp
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Busqueda();
+            BusquedaBautismos();
+        }
+
+        private void btnBuscarConfirmacion_Click(object sender, EventArgs e)
+        {
+            BusquedaConfirmaciones();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -143,12 +217,62 @@ namespace FoliosApp
                 {
                     MessageBox2.Show(IconosVarios.Tilde, "", "El registro se modificó correctamente.", true);
 
-                    RecargarGrilla();
+                    RecargarGrillaBautismos();
 
                     iIndiceGrilla = ((List<Bautismo>)bsBautismos.List).FindIndex(b => b.Id == bautismo.Id);                    
                     if (iIndiceGrilla > 0)
                     {
                         bsBautismos.Position = iIndiceGrilla;
+                    }
+                }
+                else
+                {
+                    MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al modificar el registro.", error.Mensaje, true);
+                }
+            }
+        }
+
+        private void btnEditarConfirmacion_Click(object sender, EventArgs e)
+        {
+            vConfirmaciones vConfirmaciones = new vConfirmaciones();
+            DialogResult drAgregar;
+            Error error = new Error();
+            Confirmacion confirmacion = new Confirmacion();
+            int iIndiceGrilla;
+
+            vConfirmaciones.modoVentana = ModoVentana.Modificar;
+            vConfirmaciones.lblTitulo.Text = "Editar certificado de confirmación";
+            confirmacion = (Confirmacion)bsConfirmaciones.Current;
+            vConfirmaciones.Documento = confirmacion.Documento;
+            vConfirmaciones.Apellido = confirmacion.Apellido;
+            vConfirmaciones.Nombre = confirmacion.Nombre;
+            vConfirmaciones.Libro = confirmacion.Libro;
+            vConfirmaciones.Folio = confirmacion.Folio;
+            vConfirmaciones.FechaConfirmacion = confirmacion.Fecha;
+
+            drAgregar = vConfirmaciones.ShowDialog();
+
+            if (drAgregar == DialogResult.OK)
+            {
+                confirmacion.Documento = vConfirmaciones.Documento;
+                confirmacion.Apellido = vConfirmaciones.Apellido;
+                confirmacion.Nombre = vConfirmaciones.Nombre;
+                confirmacion.Libro = vConfirmaciones.Libro;
+                confirmacion.Folio = vConfirmaciones.Folio;
+                confirmacion.Fecha = vConfirmaciones.FechaConfirmacion;
+
+                serviciosConfirmaciones.EditarConfirmacion(confirmacion, error);
+
+                if (error.CodError > 0)
+                {
+                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se modificó correctamente.", true);
+
+                    RecargarGrillaConfirmaciones();
+
+                    iIndiceGrilla = ((List<Confirmacion>)bsConfirmaciones.List).FindIndex(b => b.Id == confirmacion.Id);
+                    if (iIndiceGrilla > 0)
+                    {
+                        bsConfirmaciones.Position = iIndiceGrilla;
                     }
                 }
                 else
@@ -175,7 +299,7 @@ namespace FoliosApp
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Busqueda();
+                BusquedaBautismos();
             }
 
             if(e.KeyCode == Keys.Down)
@@ -184,48 +308,18 @@ namespace FoliosApp
             }
         }
 
-        private void btnAgregarConfirmacion_Click(object sender, EventArgs e)
+        private void txtFiltroConfirmaciones_KeyDown(object sender, KeyEventArgs e)
         {
-            vConfirmaciones vConfirmaciones = new vConfirmaciones();
-            DialogResult drAgregar;
-            Error error = new Error();
-            Confirmacion confirmacion = new Confirmacion();
-            int iIndiceGrilla;
-
-            vConfirmaciones.modoVentana = ModoVentana.Agregar;
-            vConfirmaciones.lblTitulo.Text = "Agregar certificado confirmación";
-            drAgregar = vConfirmaciones.ShowDialog();
-
-            if (drAgregar == DialogResult.OK)
+            if (e.KeyCode == Keys.Enter)
             {
-                confirmacion.Documento = vConfirmaciones.Documento;
-                confirmacion.Apellido = vConfirmaciones.Apellido;
-                confirmacion.Nombre = vConfirmaciones.Nombre;
-                confirmacion.Libro = vConfirmaciones.Libro;
-                confirmacion.Folio = vConfirmaciones.Folio;
-                confirmacion.Fecha = vConfirmaciones.FechaConfirmacion;
-
-                serviciosConfirmaciones.AgregarConfirmacion(confirmacion, error);
-
-                if (error.CodError > 0)
-                {
-                    MessageBox2.Show(IconosVarios.Tilde, "", "El registro se agregó correctamente.", true);
-
-                    RecargarGrilla();
-                    iIndiceGrilla = ((List<Confirmacion>)bsConfirmaciones.List).FindIndex(b => b.Id == confirmacion.Id);
-
-                    if (iIndiceGrilla > 0)
-                    {
-                        bsConfirmaciones.Position = iIndiceGrilla;
-                    }
-                }
-                else
-                {
-                    MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al agregar el registro.", error.Mensaje, true);
-                }
+                BusquedaConfirmaciones();
             }
-        }
 
+            if (e.KeyCode == Keys.Down)
+            {
+                dgvConfirmaciones.Focus();
+            }
+        }        
         #endregion
 
         #region ToolStripMenuItem
@@ -250,18 +344,38 @@ namespace FoliosApp
         #endregion
 
         #region Métodos
-        private void Busqueda()
+        private void BusquedaBautismos()
         {
             Error error = new Error();
             List<Bautismo> lBautismos = new List<Bautismo>();
             int iCriterio;
 
             iCriterio = Convert.ToInt32(cbxCriteriosBautismo.SelectedValue);
-            lBautismos = serviciosBautismos.GetBautismosCriterio((CriteriosBusqueda)iCriterio, txtFiltroBautismos.Text, error);
+            lBautismos = serviciosBautismos.GetBautismosCriterio((CriteriosBusquedaBautismo)iCriterio, txtFiltroBautismos.Text, error);
             if (error.CodError > 0)
             {
                 bsBautismos.DataSource = lBautismos;
                 lblCantidadResultadosBautismo.Text = lBautismos.Count.ToString();
+            }
+            else
+            {
+                MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
+            }
+        }
+
+        private void BusquedaConfirmaciones()
+        {
+            Error error = new Error();
+            List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
+            int iCriterio;
+
+            iCriterio = Convert.ToInt32(cbxCriteriosConfirmaciones.SelectedValue);
+            lConfirmaciones = serviciosConfirmaciones.GetConfirmacionesCriterio((CriteriosBusquedaConfirmacion)iCriterio, txtFiltroConfirmaciones.Text, error);
+            
+            if (error.CodError > 0)
+            {
+                bsConfirmaciones.DataSource = lConfirmaciones;
+                lblResultadosConfirmaciones.Text = lConfirmaciones.Count.ToString();
             }
             else
             {
@@ -336,6 +450,7 @@ namespace FoliosApp
         {
             Error error = new Error();
             List<Confirmacion> lConfirmaciones = new List<Confirmacion>();
+            List<dynamic> lCriterios;
 
             //Grilla dgvConfirmaciones
             lConfirmaciones = serviciosConfirmaciones.GetAllConfirmaciones(error);
@@ -348,6 +463,46 @@ namespace FoliosApp
             {
                 MessageBox2.Show(IconosVarios.Error, "Ocurrió un error al obtener información.", error.Mensaje, true);
             }
+
+            //Criterios búsqueda p/bautismos
+            lCriterios = new List<dynamic>
+            {
+                new {
+                    Texto = "Todas las columnas",
+                    Valor = 0
+                },
+                new {
+                    Texto = "Documento",
+                    Valor = 1
+                },
+                new {
+                    Texto = "Apellido",
+                    Valor = 2
+                },
+                new {
+                    Texto = "Nombre",
+                    Valor = 3
+                },
+                new {
+                    Texto = "Libro",
+                    Valor = 4
+                },
+                new {
+                    Texto = "Folio",
+                    Valor = 5
+                },
+                new {
+                    Texto = "Apellido + Nombre",
+                    Valor = 6
+                },
+                new {
+                    Texto = "Fecha de confirmación",
+                    Valor = 7
+                }
+            };
+            cbxCriteriosConfirmaciones.DataSource = lCriterios;
+            cbxCriteriosConfirmaciones.DisplayMember = "Texto";
+            cbxCriteriosConfirmaciones.ValueMember = "Valor";
         }
 
         private void Inicio()
@@ -365,25 +520,42 @@ namespace FoliosApp
                     btnAgregarBautismo.Enabled = true;
                     btnEditarBautismo.Enabled = false;
                     btnBorrarBautismo.Enabled = false;
+
+                    btnAgregarConfirmacion.Enabled = true;
+                    btnEditarConfirmacion.Enabled = false;
+                    btnBorrarConfirmacion.Enabled = false;
                     break;
 
                 case ModoBotones.Editar:
                     btnAgregarBautismo.Enabled = false;
                     btnEditarBautismo.Enabled = false;
                     btnBorrarBautismo.Enabled = false;
+
+                    btnAgregarConfirmacion.Enabled = false;
+                    btnEditarConfirmacion.Enabled = false;
+                    btnBorrarConfirmacion.Enabled = false;
                     break;
 
                 case ModoBotones.FilaSeleccionada:
                     btnAgregarBautismo.Enabled = true;
                     btnEditarBautismo.Enabled = true;
                     btnBorrarBautismo.Enabled = true;
+
+                    btnAgregarConfirmacion.Enabled = true;
+                    btnEditarConfirmacion.Enabled = true;
+                    btnBorrarConfirmacion.Enabled = true;
                     break;
             }
         }
 
-        private void RecargarGrilla()
+        private void RecargarGrillaBautismos()
         {
-            Busqueda();
+            BusquedaBautismos();
+        }
+
+        private void RecargarGrillaConfirmaciones()
+        {
+            BusquedaConfirmaciones();
         }
 
         private void SetPermisos()

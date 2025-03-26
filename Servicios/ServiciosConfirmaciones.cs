@@ -14,7 +14,7 @@ namespace FoliosApp.Servicios
             return repositorioConfirmaciones.GetAllConfirmaciones(error);
         }
 
-        public List<Confirmacion> GetBautismosCriterio(CriteriosBusqueda criterio, string busqueda, Error error)
+        public List<Confirmacion> GetConfirmacionesCriterio(CriteriosBusquedaConfirmacion criterio, string busqueda, Error error)
         {
             return repositorioConfirmaciones.GetConfirmacionesCriterio(criterio, busqueda, error);
         }

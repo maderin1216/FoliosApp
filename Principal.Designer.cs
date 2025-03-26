@@ -46,6 +46,8 @@ namespace FoliosApp
             this.txtFiltroBautismos = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgvBautismos = new System.Windows.Forms.DataGridView();
+            this.FechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaBautismo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnBorrarBautismo = new System.Windows.Forms.Button();
@@ -61,9 +63,9 @@ namespace FoliosApp
             this.panel9 = new System.Windows.Forms.Panel();
             this.btnBuscarConfirmacion = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxCriteriosConfirmaciones = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtFiltroConfirmaciones = new System.Windows.Forms.TextBox();
             this.panel10 = new System.Windows.Forms.Panel();
             this.dgvConfirmaciones = new System.Windows.Forms.DataGridView();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -79,9 +81,15 @@ namespace FoliosApp
             this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.librosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.administraciónDeLibrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.libroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBautismos = new System.Windows.Forms.BindingSource(this.components);
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.documentoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,14 +99,6 @@ namespace FoliosApp
             this.folioDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsConfirmaciones = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaBautismo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.libroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.folioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpBautismos.SuspendLayout();
@@ -293,6 +293,24 @@ namespace FoliosApp
             this.dgvBautismos.Size = new System.Drawing.Size(1203, 381);
             this.dgvBautismos.TabIndex = 0;
             // 
+            // FechaNacimiento
+            // 
+            this.FechaNacimiento.DataPropertyName = "FechaNacimiento";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.FechaNacimiento.DefaultCellStyle = dataGridViewCellStyle1;
+            this.FechaNacimiento.HeaderText = "Nacimiento";
+            this.FechaNacimiento.Name = "FechaNacimiento";
+            // 
+            // FechaBautismo
+            // 
+            this.FechaBautismo.DataPropertyName = "FechaBautismo";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.FechaBautismo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.FechaBautismo.HeaderText = "Bautismo";
+            this.FechaBautismo.Name = "FechaBautismo";
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.panel7);
@@ -449,9 +467,9 @@ namespace FoliosApp
             // 
             this.panel9.Controls.Add(this.btnBuscarConfirmacion);
             this.panel9.Controls.Add(this.label6);
-            this.panel9.Controls.Add(this.comboBox1);
+            this.panel9.Controls.Add(this.cbxCriteriosConfirmaciones);
             this.panel9.Controls.Add(this.label7);
-            this.panel9.Controls.Add(this.textBox1);
+            this.panel9.Controls.Add(this.txtFiltroConfirmaciones);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(3, 53);
             this.panel9.Name = "panel9";
@@ -472,6 +490,7 @@ namespace FoliosApp
             this.btnBuscarConfirmacion.TabIndex = 4;
             this.btnBuscarConfirmacion.Text = "BUSCAR";
             this.btnBuscarConfirmacion.UseVisualStyleBackColor = false;
+            this.btnBuscarConfirmacion.Click += new System.EventHandler(this.btnBuscarConfirmacion_Click);
             // 
             // label6
             // 
@@ -483,14 +502,14 @@ namespace FoliosApp
             this.label6.TabIndex = 3;
             this.label6.Text = "Criterio";
             // 
-            // comboBox1
+            // cbxCriteriosConfirmaciones
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(429, 13);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(215, 26);
-            this.comboBox1.TabIndex = 2;
+            this.cbxCriteriosConfirmaciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCriteriosConfirmaciones.FormattingEnabled = true;
+            this.cbxCriteriosConfirmaciones.Location = new System.Drawing.Point(429, 13);
+            this.cbxCriteriosConfirmaciones.Name = "cbxCriteriosConfirmaciones";
+            this.cbxCriteriosConfirmaciones.Size = new System.Drawing.Size(215, 26);
+            this.cbxCriteriosConfirmaciones.TabIndex = 2;
             // 
             // label7
             // 
@@ -502,12 +521,13 @@ namespace FoliosApp
             this.label7.TabIndex = 1;
             this.label7.Text = "Filtro";
             // 
-            // textBox1
+            // txtFiltroConfirmaciones
             // 
-            this.textBox1.Location = new System.Drawing.Point(54, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(290, 26);
-            this.textBox1.TabIndex = 0;
+            this.txtFiltroConfirmaciones.Location = new System.Drawing.Point(54, 13);
+            this.txtFiltroConfirmaciones.Name = "txtFiltroConfirmaciones";
+            this.txtFiltroConfirmaciones.Size = new System.Drawing.Size(290, 26);
+            this.txtFiltroConfirmaciones.TabIndex = 0;
+            this.txtFiltroConfirmaciones.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFiltroConfirmaciones_KeyDown);
             // 
             // panel10
             // 
@@ -572,6 +592,7 @@ namespace FoliosApp
             this.btnBorrarConfirmacion.TabIndex = 7;
             this.btnBorrarConfirmacion.Text = "BORRAR";
             this.btnBorrarConfirmacion.UseVisualStyleBackColor = false;
+            this.btnBorrarConfirmacion.Click += new System.EventHandler(this.btnBorrarConfirmacion_Click);
             // 
             // btnEditarConfirmacion
             // 
@@ -587,6 +608,7 @@ namespace FoliosApp
             this.btnEditarConfirmacion.TabIndex = 6;
             this.btnEditarConfirmacion.Text = "EDITAR";
             this.btnEditarConfirmacion.UseVisualStyleBackColor = false;
+            this.btnEditarConfirmacion.Click += new System.EventHandler(this.btnEditarConfirmacion_Click);
             // 
             // btnAgregarConfirmacion
             // 
@@ -679,13 +701,6 @@ namespace FoliosApp
             this.administraciónDeLibrosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.administraciónDeLibrosToolStripMenuItem.Text = "&Administrar libros";
             // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.salirToolStripMenuItem.Text = "&Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -700,6 +715,50 @@ namespace FoliosApp
             this.sobreToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.sobreToolStripMenuItem.Text = "Sobre...";
             this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.salirToolStripMenuItem.Text = "&Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // documentoDataGridViewTextBoxColumn
+            // 
+            this.documentoDataGridViewTextBoxColumn.DataPropertyName = "Documento";
+            this.documentoDataGridViewTextBoxColumn.HeaderText = "Documento";
+            this.documentoDataGridViewTextBoxColumn.Name = "documentoDataGridViewTextBoxColumn";
+            // 
+            // apellidoDataGridViewTextBoxColumn
+            // 
+            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
+            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // libroDataGridViewTextBoxColumn
+            // 
+            this.libroDataGridViewTextBoxColumn.DataPropertyName = "Libro";
+            this.libroDataGridViewTextBoxColumn.HeaderText = "Libro";
+            this.libroDataGridViewTextBoxColumn.Name = "libroDataGridViewTextBoxColumn";
+            // 
+            // folioDataGridViewTextBoxColumn
+            // 
+            this.folioDataGridViewTextBoxColumn.DataPropertyName = "Folio";
+            this.folioDataGridViewTextBoxColumn.HeaderText = "Folio";
+            this.folioDataGridViewTextBoxColumn.Name = "folioDataGridViewTextBoxColumn";
             // 
             // bsBautismos
             // 
@@ -752,61 +811,6 @@ namespace FoliosApp
             // bsConfirmaciones
             // 
             this.bsConfirmaciones.DataSource = typeof(FoliosApp.Modelos.Confirmacion);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // documentoDataGridViewTextBoxColumn
-            // 
-            this.documentoDataGridViewTextBoxColumn.DataPropertyName = "Documento";
-            this.documentoDataGridViewTextBoxColumn.HeaderText = "Documento";
-            this.documentoDataGridViewTextBoxColumn.Name = "documentoDataGridViewTextBoxColumn";
-            // 
-            // apellidoDataGridViewTextBoxColumn
-            // 
-            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            // 
-            // FechaNacimiento
-            // 
-            this.FechaNacimiento.DataPropertyName = "FechaNacimiento";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.FechaNacimiento.DefaultCellStyle = dataGridViewCellStyle1;
-            this.FechaNacimiento.HeaderText = "Nacimiento";
-            this.FechaNacimiento.Name = "FechaNacimiento";
-            // 
-            // FechaBautismo
-            // 
-            this.FechaBautismo.DataPropertyName = "FechaBautismo";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.FechaBautismo.DefaultCellStyle = dataGridViewCellStyle2;
-            this.FechaBautismo.HeaderText = "Bautismo";
-            this.FechaBautismo.Name = "FechaBautismo";
-            // 
-            // libroDataGridViewTextBoxColumn
-            // 
-            this.libroDataGridViewTextBoxColumn.DataPropertyName = "Libro";
-            this.libroDataGridViewTextBoxColumn.HeaderText = "Libro";
-            this.libroDataGridViewTextBoxColumn.Name = "libroDataGridViewTextBoxColumn";
-            // 
-            // folioDataGridViewTextBoxColumn
-            // 
-            this.folioDataGridViewTextBoxColumn.DataPropertyName = "Folio";
-            this.folioDataGridViewTextBoxColumn.HeaderText = "Folio";
-            this.folioDataGridViewTextBoxColumn.Name = "folioDataGridViewTextBoxColumn";
             // 
             // Principal
             // 
@@ -897,9 +901,9 @@ namespace FoliosApp
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Button btnBuscarConfirmacion;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxCriteriosConfirmaciones;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtFiltroConfirmaciones;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.DataGridView dgvConfirmaciones;
         private System.Windows.Forms.Panel panel11;

@@ -44,49 +44,54 @@ namespace FoliosApp.Repositorios
             return retorno;
         }
 
-        public List<Bautismo> GetBautismosCriterio(CriteriosBusqueda criterio, string busqueda, Error error)
+        public List<Bautismo> GetBautismosCriterio(CriteriosBusquedaBautismo criterio, string busqueda, Error error)
         {
             List<Bautismo> retorno = new List<Bautismo>();
             string sSql = "";
             DynamicParameters parametrosDapperLocal = new DynamicParameters();
             string criterioString = "";
             string[] busquedaSplitted = busqueda.Split(' ');
+            DateTime resultNacimiento;
+            DateTime resultBautismo;
+
 
             try
             {
                 switch (criterio)
                 {
-                    case CriteriosBusqueda.TodasLasColumnas:
+                    case CriteriosBusquedaBautismo.TodasLasColumnas:
                         criterioString = $@"    documento LIKE '%{busqueda}%'
                                                 OR apellido LIKE '%{busqueda}%'
                                                 OR nombre LIKE '%{busqueda}%'
                                                 OR numero_libro = '{busqueda}'
-                                                OR numero_folio = '{busqueda}'";
+                                                OR numero_folio = '{busqueda}'
+                                                OR fecha_nacimiento = '{(DateTime.TryParse(busqueda, out resultNacimiento) ? resultNacimiento.ToString("yyyy-MM-dd") : "")}'
+                                                OR fecha_bautismo = '{(DateTime.TryParse(busqueda, out resultBautismo) ? resultBautismo.ToString("yyyy-MM-dd") : "")}'";
                         break;
-                    case CriteriosBusqueda.Documento:
+                    case CriteriosBusquedaBautismo.Documento:
                         criterioString = $"documento LIKE '%{busqueda}%'";
                         break;
-                    case CriteriosBusqueda.Apellido:
+                    case CriteriosBusquedaBautismo.Apellido:
                         criterioString = $"apellido LIKE '%{busqueda}%'";
                         break;
-                    case CriteriosBusqueda.Nombre:
+                    case CriteriosBusquedaBautismo.Nombre:
                         criterioString = $"nombre LIKE '%{busqueda}%'";
                         break;
-                    case CriteriosBusqueda.Libro:
+                    case CriteriosBusquedaBautismo.Libro:
                         criterioString = $"numero_libro = '{busqueda}'";
                         break;
-                    case CriteriosBusqueda.Folio:
+                    case CriteriosBusquedaBautismo.Folio:
                         criterioString = $"numero_folio = '{busqueda}'";
                         break;
-                    case CriteriosBusqueda.ApellidoNombre:                        
+                    case CriteriosBusquedaBautismo.ApellidoNombre:                        
                         criterioString = $@"    CONCAT(apellido, ' ', nombre) LIKE '%{busqueda}%'
                                                 OR CONCAT(nombre, ' ', apellido) LIKE '%{busqueda}'";
                         break;
-                    case CriteriosBusqueda.FechaNacimiento:
-                        criterioString = $"fecha_nacimiento = '{(DateTime.TryParse(busqueda, out DateTime resultNacimiento) ? resultNacimiento.ToString("yyyy-MM-dd") : "")}'";
+                    case CriteriosBusquedaBautismo.FechaNacimiento:
+                        criterioString = $"fecha_nacimiento = '{(DateTime.TryParse(busqueda, out resultNacimiento) ? resultNacimiento.ToString("yyyy-MM-dd") : "")}'";
                         break;
-                    case CriteriosBusqueda.FechaBautismo:
-                        criterioString = $"fecha_bautismo = '{(DateTime.TryParse(busqueda, out DateTime resultBautismo) ? resultBautismo.ToString("yyyy-MM-dd") : "")}'";
+                    case CriteriosBusquedaBautismo.FechaBautismo:
+                        criterioString = $"fecha_bautismo = '{(DateTime.TryParse(busqueda, out resultBautismo) ? resultBautismo.ToString("yyyy-MM-dd") : "")}'";
                         break;
                 }
 

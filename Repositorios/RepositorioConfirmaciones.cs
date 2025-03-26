@@ -43,43 +43,48 @@ namespace FoliosApp.Repositorios
             return retorno;
         }
 
-        public List<Confirmacion> GetConfirmacionesCriterio(CriteriosBusqueda criterio, string busqueda, Error error)
+        public List<Confirmacion> GetConfirmacionesCriterio(CriteriosBusquedaConfirmacion criterio, string busqueda, Error error)
         {
             List<Confirmacion> retorno = new List<Confirmacion>();
             string sSql = "";
             DynamicParameters parametrosDapperLocal = new DynamicParameters();
             string criterioString = "";
             string[] busquedaSplitted = busqueda.Split(' ');
+            DateTime resultFecha;
 
             try
             {
                 switch (criterio)
                 {
-                    case CriteriosBusqueda.TodasLasColumnas:
+                    case CriteriosBusquedaConfirmacion.TodasLasColumnas:
                         criterioString = $@"    documento LIKE '%{busqueda}%'
                                                 OR apellido LIKE '%{busqueda}%'
                                                 OR nombre LIKE '%{busqueda}%'
                                                 OR numero_libro = '{busqueda}'
-                                                OR numero_folio = '{busqueda}'";
+                                                OR numero_folio = '{busqueda}'
+                                                OR fecha = '{(DateTime.TryParse(busqueda, out resultFecha) ? resultFecha.ToString("yyyy-MM-dd") : "")}'";
                         break;
-                    case CriteriosBusqueda.Documento:
+                    case CriteriosBusquedaConfirmacion.Documento:
                         criterioString = $"documento LIKE '%{busqueda}%'";
                         break;
-                    case CriteriosBusqueda.Apellido:
+                    case CriteriosBusquedaConfirmacion.Apellido:
                         criterioString = $"apellido LIKE '%{busqueda}%'";
                         break;
-                    case CriteriosBusqueda.Nombre:
+                    case CriteriosBusquedaConfirmacion.Nombre:
                         criterioString = $"nombre LIKE '%{busqueda}%'";
                         break;
-                    case CriteriosBusqueda.Libro:
+                    case CriteriosBusquedaConfirmacion.Libro:
                         criterioString = $"numero_libro = '{busqueda}'";
                         break;
-                    case CriteriosBusqueda.Folio:
+                    case CriteriosBusquedaConfirmacion.Folio:
                         criterioString = $"numero_folio = '{busqueda}'";
                         break;
-                    case CriteriosBusqueda.ApellidoNombre:                        
+                    case CriteriosBusquedaConfirmacion.ApellidoNombre:                        
                         criterioString = $@"    CONCAT(apellido, ' ', nombre) LIKE '%{busqueda}%'
                                                 OR CONCAT(nombre, ' ', apellido) LIKE '%{busqueda}'";
+                        break;
+                    case CriteriosBusquedaConfirmacion.FechaConfirmacion:
+                        criterioString = $"fecha = '{(DateTime.TryParse(busqueda, out resultFecha) ? resultFecha.ToString("yyyy-MM-dd") : "")}'";
                         break;
                 }
 
