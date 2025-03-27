@@ -91,14 +91,13 @@ namespace FoliosApp
             this.libroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bsBautismos = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsConfirmaciones = new System.Windows.Forms.BindingSource(this.components);
             this.documentoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.libroDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.folioDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bsConfirmaciones = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tpBautismos.SuspendLayout();
@@ -543,7 +542,6 @@ namespace FoliosApp
             this.dgvConfirmaciones.AutoGenerateColumns = false;
             this.dgvConfirmaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvConfirmaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn1,
             this.documentoDataGridViewTextBoxColumn1,
             this.apellidoDataGridViewTextBoxColumn1,
             this.nombreDataGridViewTextBoxColumn1,
@@ -765,12 +763,9 @@ namespace FoliosApp
             this.bsBautismos.DataSource = typeof(FoliosApp.Modelos.Bautismo);
             this.bsBautismos.CurrentChanged += new System.EventHandler(this.bsBautismos_CurrentChanged);
             // 
-            // idDataGridViewTextBoxColumn1
+            // bsConfirmaciones
             // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.Visible = false;
+            this.bsConfirmaciones.DataSource = typeof(FoliosApp.Modelos.Confirmacion);
             // 
             // documentoDataGridViewTextBoxColumn1
             // 
@@ -807,10 +802,6 @@ namespace FoliosApp
             this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
             this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
             this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
-            // 
-            // bsConfirmaciones
-            // 
-            this.bsConfirmaciones.DataSource = typeof(FoliosApp.Modelos.Confirmacion);
             // 
             // Principal
             // 
@@ -915,13 +906,6 @@ namespace FoliosApp
         private System.Windows.Forms.Label lblResultadosConfirmaciones;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.BindingSource bsConfirmaciones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn documentoDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn libroDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
@@ -932,6 +916,12 @@ namespace FoliosApp
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaBautismo;
         private System.Windows.Forms.DataGridViewTextBoxColumn libroDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn documentoDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn libroDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn folioDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
     }
 }
 

@@ -39,6 +39,7 @@ namespace FoliosApp.Ventanas
             usuario.Id = ((Usuario)bsUsuarios.Current).Id;
             usuario.Nombre = txtNombreUsuario.Text;
             usuario.IdNivel = Convert.ToInt32(cbxPermisos.SelectedValue);
+            usuario.Clave = txtClave.Text;
 
             if (modoVentana == ModoVentana.Agregar)
             {
